@@ -1,0 +1,85 @@
+﻿body {
+    background: #094585;
+}
+
+#body {
+    min-height: 400px;
+    background: #0C5DB3;
+    margin-top: 50vh;
+    transform: translate(0, -70%);
+    overflow: hidden;
+}
+
+.content {
+    overflow: auto;
+    width: 700px;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-family: 'Titillium Web Regular', sans-serif;
+}
+
+#title {
+    font-family: 'Titillium Web SemiBold', sans-serif;
+    color: #021b36;
+    font-size: 35px;
+    text-align: center;
+}
+form {
+    width: 440px;
+    margin: 0 auto;
+}
+    form input[type=email], form input[type=password] {
+        width: 440px;
+        display: block;
+        margin-top: 50px;
+        min-height: 30px;
+        border: none;
+        border-bottom: 1px solid #0b4b8f;
+        background: transparent;
+        padding: 5px;
+        font-family: 'Tajawal Regular', sans-serif;
+        font-size: 18px;
+    }
+
+form input[type=submit] {
+    cursor: pointer;
+    color: #fff;
+    background: #155294;
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px 40px;
+    border: 0;
+    font-family: 'Exo-Medium', sans-serif;
+    font-size: 17px;
+}
+
+    form input[type=submit]:hover {
+        opacity: .7;
+    }
+.validation-summary-errors {
+    font-family: 'Exo-Medium', sans-serif;
+    margin-top: 20px;
+}
+.more_actions {
+    width: 370px;
+    margin: 0 auto;
+    margin-top: 5px;
+    text-align: center;
+}
+
+    .more_actions a {
+        font-family: 'Exo-Medium', sans-serif;
+        font-size: 15px;
+        font-weight: 400;
+        color: #021b36;
+        display: inline-block;
+        cursor: pointer;
+        margin: 0 5px;
+        text-decoration: none;
+    }
+
+        .more_actions a:hover {
+            opacity: .6;
+        }

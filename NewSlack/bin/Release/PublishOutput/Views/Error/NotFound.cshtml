@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Slack - NotFound";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/Styles/Common/reset.css" />
+    <link rel="stylesheet" href="~/Content/Styles/Layout/fonts.css" />
+    <style>
+        body {
+            background: #EDEEF0;
+            text-align: center;
+        }
+        h1 {
+            font-family: 'Exo-Light';
+            font-weight: 300;
+            font-size: 40px;
+            color: #0c5db3;
+            margin-top: 100px;
+        }
+
+        a {
+            text-decoration: none;
+            background: #fff;
+            color: #595959;
+            display: block;
+            padding: 25px 0;
+            margin-top: 20px;
+            font-family: 'Antic';
+            font-size: 30px;
+        }
+    </style>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        $(function () {
+            $('a').hover(function () {
+                $('body').css('background', '#FFF');
+                $(this).css('background', '#EDEEF0');
+                $(this).css('color', '#000');
+            }, function () {
+                $('body').css('background', '#EDEEF0');
+                $(this).css('background', '#FFF');
+                $(this).css('color', '#595959');
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Page not found</h1>
+    <a href="/news">TO HUB</a>
+</body>
+</html>
+

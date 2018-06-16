@@ -1,0 +1,79 @@
+﻿@using Slack.Data.Entities
+@using Slack.Models.Entities
+@model Tuple<List<Message>, List<UserFor>, UserFor>
+
+@{
+    ViewBag.Title = "Slack - Dialog";
+    ViewBag.Page = "Dialog";
+
+    var messages = Model.Item1;
+    var users = Model.Item2;
+    var interlocutor = Model.Item3;
+}
+
+<html>
+<head>
+    @section links{
+        <link rel="stylesheet" href="~/Content/Styles/Home/Dialog/dialog.css" />
+    }
+    @section scripts{
+        <script src="~/Scripts/Home/Dialog/dialog.js"></script>
+        <script src="~/Scripts/Hubs/messagehub.js"></script>
+    }
+</head>
+<body>
+    <section id="dialog">
+        <div class="container">
+            <div class="dialog_header">
+                <div class="back_to_dialogs left">
+                    <img class="left" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB9SURBVEhL7c+9CYAwGIThbOESgp2FvYWlO2hn4xTOk5/BBBtLTzjBXr4Pi3sghFzzkiBf5ZwXnIZPHwhuKaUdd83J3ivacrKnqClFTSlqCsEVwcM1ekN4wDlxJk5+8NtRcU5+FFfc1S/iuGdOfp54jLHn5KeU0iFc8SkUwgUtrsfc94yoWQAAAABJRU5ErkJggg=="
+                         alt="">
+                    <h4 class="right">Back to dialogs</h4>
+                </div>
+                <div class="dialog_name">
+                    <a href="/user/@interlocutor.User.UserName">@interlocutor.User.FirstName @interlocutor.User.LastName</a>
+                </div>
+                <div class="dialog_img right">
+                    <img src="@interlocutor.User.ImagePath" alt="">
+                </div>
+            </div>
+            <div class="dialog_content">
+                @if (messages.Count > 0 && users.Count > 0)
+                {
+                    <div class="messages">
+                        @foreach (var message in messages)
+                        {
+                            var userfor = users
+                            .FirstOrDefault(i => i.Id == message.Id);
+                            var user = userfor.User;
+
+                            <div class="message">
+                                <div class="message_header">
+                                    <img src="@user.ImagePath" alt="">
+                                    <a href="/user/@user.UserName">@user.FirstName @user.LastName</a>
+                                </div>
+                                <div class="message_content">
+                                    <p>@message.Content</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <h2 class="title">Start a dialog first!</h2>
+                }
+            </div>
+            <div class="dialog_footer clearfix">
+                <div class="type_message left">
+                    <textarea spellcheck="false" placeholder="Enter message here"></textarea>
+                </div>
+                <div class="send_message right" hidden>
+                    <input type="submit" value="Send">
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+

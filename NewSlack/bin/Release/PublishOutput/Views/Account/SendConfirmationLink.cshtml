@@ -1,0 +1,35 @@
+﻿@model string
+@{
+    Layout = null;
+    ViewBag.Title = "Подтверждение аккаунта";
+}
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        $(function () {
+            $('#refresh_page').click(function () {
+                location.reload();
+            });
+        });
+    </script>
+
+    <link rel="stylesheet" href="~/Content/Styles/Common/reset.css" />
+    <link rel="stylesheet" href="~/Content/Styles/Layout/fonts.css">
+    <link rel="stylesheet" href="~/Content/Styles/Account/ForgotPassword/forgot_pass.css" />
+    <link rel="stylesheet" href="~/Content/Styles/Account/SendConfirmationLink/sendConfirmLink.css"/>
+</head>
+<body>
+    <section id="body">
+        <div class="content">
+            <h2 id="title">@Model</h2>
+            <h4>the time to send a message can take up to 5 minutes</h4>
+            <a id="refresh_page">Message didn't reach?</a>
+        </div>
+    </section>
+</body>
+</html>
+

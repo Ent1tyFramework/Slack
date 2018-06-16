@@ -1,0 +1,47 @@
+﻿@font-face {
+    font-family: 'Titillium Web Regular';
+    src: url(/Content/Fonts/TitilliumWeb-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Titillium Web SemiBold';
+    src: url(/Content/Fonts/TitilliumWeb-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: 'Titillium Web Bold';
+    src: url(/Content/Fonts/TitilliumWeb-Bold.ttf);
+}
+
+@font-face {
+    font-family: 'Quicksand Regular';
+    src: url(/Content/Fonts/Quicksand-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Tajawal Regular';
+    src: url(/Content/Fonts/Tajawal-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Tajawal Light';
+    src: url(/Content/Fonts/Tajawal-Light.ttf);
+}
+
+@font-face {
+    font-family: 'Antic';
+    src: url(/Content/Fonts/Antic-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Exo-Medium';
+    src: url(/Content/Fonts/Exo-Medium.ttf);
+}
+
+@font-face {
+    font-family: 'Exo-Light';
+    src: url(/Content/Fonts/Exo-Light.ttf);
+}
+
+
+

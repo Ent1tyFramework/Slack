@@ -1,0 +1,126 @@
+﻿#search {
+    margin-top: 50px;
+}
+
+.container {
+    width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    min-height: 670px;
+    border: 1px solid #e3e4e8;
+}
+
+.search_form {
+    overflow: auto;
+}
+
+    .search_form .title {
+        font-family: 'Quicksand Regular';
+        font-weight: 400;
+        font-size: 28px;
+        text-align: center;
+        color: #0C5DB3;
+        margin: 25px 0 50px 0;
+    }
+
+.search {
+    width: 500px;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    border: 1px solid #e3e4e8;
+    border-left: 2px solid #e3e4e8;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+    .search > div {
+        height: 50px;
+    }
+
+.search_input input {
+    border: none;
+    font-family: 'Tajawal Regular';
+    font-size: 18px;
+    padding: 11px 10px;
+}
+
+.search_submit a {
+    background: #0C5DB3;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Tajawal Regular';
+    font-size: 18px;
+    padding: 12px 10px;
+    display: inline-block;
+}
+
+    .search_submit a:hover {
+        background: #2686ed;
+    }
+
+.results {
+    margin-top: 50px;
+    font-family: 'Titillium Web Regular';
+}
+
+.user {
+    margin-bottom: 50px;
+    height: 160px;
+    border: 1px solid #e3e4e8;
+}
+
+    .user img {
+        width: 150px;
+        height: 150px;
+        border-radius: 100px;
+    }
+
+    .user a {
+        text-decoration: none;
+        color: #000;
+        font-size: 24px;
+    }
+
+.user_data a:hover {
+    text-decoration: underline;
+}
+
+.user h4 {
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.user_img {
+    margin: 5px;
+}
+
+.user_data {
+    margin-left: 50px;
+    margin-top: 30px;
+}
+
+.follow {
+    text-align: center;
+}
+
+    .follow a {
+        font-size: 20px;
+        padding: 65px 25px;
+        display: inline-block;
+        background: #303030;
+        color: #fff;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
+
+        .follow a:hover {
+            background: #4a4a4a;
+        }
+
+.results .error {
+    text-align: center;
+    font-weight: 400;
+    font-size: 22px;
+}

@@ -1,0 +1,15 @@
+C:\Users\admin\Desktop\Projects\NewSlack\Slack.Data\bin\Debug\Slack.Data.dll.config
+C:\Users\admin\Desktop\Projects\NewSlack\Slack.Data\bin\Debug\Slack.Data.dll
+C:\Users\admin\Desktop\Projects\NewSlack\Slack.Data\bin\Debug\Slack.Data.pdb
+C:\Users\admin\Desktop\Projects\NewSlack\Slack.Data\bin\Debug\EntityFramework.dll
+C:\Users\admin\Desktop\Projects\NewSlack\Slack.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\admin\Desktop\Projects\NewSlack\Slack.Data\bin\Debug\EntityFramework.xml
+C:\Users\admin\Desktop\Projects\NewSlack\Slack.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\admin\Desktop\Projects\NewSlack\Slack.Data\obj\Debug\Slack.Data.Migrations.context11.resources
+C:\Users\admin\Desktop\Projects\NewSlack\Slack.Data\obj\Debug\Slack.Data.Migrations.context12.resources
+C:\Users\admin\Desktop\Projects\NewSlack\Slack.Data\obj\Debug\Slack.Data.csproj.GenerateResource.cache
+C:\Users\admin\Desktop\Projects\NewSlack\Slack.Data\obj\Debug\Slack.Data.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\Projects\NewSlack\Slack.Data\obj\Debug\Slack.Data.csproj.CopyComplete
+C:\Users\admin\Desktop\Projects\NewSlack\Slack.Data\obj\Debug\Slack.Data.dll
+C:\Users\admin\Desktop\Projects\NewSlack\Slack.Data\obj\Debug\Slack.Data.pdb
+C:\Users\admin\Desktop\Projects\NewSlack\Slack.Data\obj\Debug\Slack.Data.csprojResolveAssemblyReference.cache

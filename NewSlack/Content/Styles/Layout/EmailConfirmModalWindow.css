@@ -1,0 +1,29 @@
+﻿body {
+    pointer-events: none;
+    -moz-user-select: none;
+    user-select: none;
+    overflow: hidden;
+}
+
+.full_modal {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 99;
+    opacity: .6;
+    background-color: #ccc;
+    -moz-user-select: all;
+    user-select: all;
+}
+
+div.popup {
+    position: fixed;
+    z-index: 100;
+    pointer-events: all;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}

@@ -1,0 +1,95 @@
+﻿.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.clearfix::after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+body {
+    background: #edeef0;
+}
+
+#dialogs {
+    margin-top: 61px;
+}
+
+.container {
+    width: 700px;
+    margin: 0 auto;
+    background: #fff;
+}
+
+.dialog {
+    max-height: 68.5px;
+    margin: 0 auto;
+    margin: 10px 0 10px 5px;
+    padding: 2px;
+    border-top: 1px solid #e3e4e8;
+    border-bottom: 1px solid #e3e4e8;
+    cursor: pointer;
+}
+
+    .dialog:hover {
+        background: #ededed;
+    }
+
+.dialog_content{
+    height: 60px;
+    width: 650px;
+}
+    .dialog_img {
+        height: 60px;
+    }
+
+    .dialog_img img {
+        border-radius: 100px;
+        width: 60px;
+        height: inherit;
+    }
+
+.dialog_info {
+    height: 60px;
+    margin-left: 10px;
+}
+
+.dialog_name {
+    display: inline-block;
+    margin-top: 4px;
+}
+
+    .dialog_name a {
+        font-family: 'Titillium Web SemiBold', sans-serif;
+        font-weight: 400;
+        text-decoration: none;
+        color: #000;
+    }
+
+        .dialog_name a:hover {
+            text-decoration: underline;
+        }
+
+.dialog_last_msg p {
+    font-family: 'Tajawal Regular', sans-serif;
+}
+
+.remove_dialog {
+    height: 60px;
+    width: 40px;
+}
+
+    .remove_dialog img {
+        width: 40px;
+        height: 40px;
+        margin: 10px 0;
+        cursor: pointer;
+    }

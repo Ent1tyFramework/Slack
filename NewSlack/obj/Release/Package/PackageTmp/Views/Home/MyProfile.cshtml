@@ -1,0 +1,70 @@
+﻿@using Slack.Identity.Entities
+@model  ApplicationUser
+@{
+    ViewBag.Title = "Slack user - Islam Babaev";
+    ViewBag.Page = "My profile";
+    if (!User.Identity.IsAuthenticated)
+    {
+        Layout = "/Views/Shared/_LayoutForAnonyms.cshtml";
+    }
+}
+<html>
+<head>
+    @section links{
+        <link rel="stylesheet" href="~/Content/Styles/Home/Profile/profile.css" />
+    }
+    @section scripts{
+        <script src="~/Scripts/Home/Posts/posts_load.js"></script>
+        <script>
+            $(function () {
+                //posts_load
+                $('div.posts').empty();
+                only = true;
+                data_loading('@Model.Id');
+            });
+        </script>
+    }
+</head>
+<body>
+    <section id="user_profile">
+        <div class="container">
+            <div class="about_user clearfix">
+                <div class="user_img left">
+                    <img src="@Model.ImagePath" alt="">
+                </div>
+                <div class="user_data">
+                    <h3>@Model.FirstName @Model.LastName</h3>
+                    @if (Model.Birthday.HasValue)
+                    {
+                        DateTime birthday = Model.Birthday.Value;
+                        DateTime now = DateTime.Today;
+
+                        int age = now.Year - birthday.Year;
+                        if (now < birthday.AddYears(age))
+                        {
+                            age--;
+                        }
+                        <h4>@age years</h4>
+                    }
+                    @if (Model.City != null && Model.Country != null)
+                    {
+                        <h4>@Model.City, @Model.Country</h4>
+                    }
+                </div>
+                <div class="settings">
+                    <a href="/settings">Edit profile</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="posts">
+        <div class="container">
+            <div class="title">Posts</div>
+            <div class="posts">
+                <!--render posts from cache-->
+                @{Html.RenderAction("Posts", "Home", new { skip = 0, take = 10, only = true, userId = Model.Id, fromCache = true });}
+            </div>
+        </div>
+    </section>
+</body>
+</html>

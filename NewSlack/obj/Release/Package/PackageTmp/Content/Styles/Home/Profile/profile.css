@@ -1,0 +1,117 @@
+﻿.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+.posts{
+    margin:0;
+}
+.clearfix:after {
+    content: '';
+    display: table;
+    width: 100%;
+    clear: both;
+}
+
+#user_profile {
+    margin-top: 50px;
+}
+    .container {
+        width: 800px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 10px;
+        overflow: auto;
+    }
+
+#user_profile .container {
+    border: 1px solid #e3e4e8;
+}
+
+#user_profile .about_user {
+    padding: 10px 0;
+    overflow: hidden;
+}
+#more_actions {
+    width: 200px;
+    border: 1px solid #dedede;
+    border-radius: 3px;
+    background: #fff;
+    position: absolute;
+}
+    #more_actions li {
+        font-family: 'Titillium Web SemiBold',sans-serif;
+        text-align: center;
+        color: #0C5DB3;
+        margin: 2px 0;
+        cursor: pointer;
+    }
+        #more_actions li:hover {
+            color: #1683f7;
+        }
+
+        #user_profile .container .user_img img {
+            width: 180px;
+            height: 180px;
+            border-radius: 100px;
+        }
+
+#user_profile .container .user_data {
+    font-family: 'Titillium Web SemiBold',sans-serif;
+    display: inline-block;
+    margin-left: 60px;
+}
+
+    #user_profile .container .user_data h3 {
+        font-weight: 400;
+        font-size: 24px;
+        color: #0C5DB3;
+    }
+
+    #user_profile .container .user_data h4 {
+        font-weight: 400;
+    }
+
+#user_profile .about_user > img {
+    width: 24px;
+    padding: 10px;
+    margin-right: 40px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#user_profile .about_user .follow, #user_profile .about_user .settings {
+    margin-top: 50px;
+}
+
+    #user_profile .about_user .follow a, #user_profile .about_user .settings a {
+        font-family: 'Titillium Web SemiBold',sans-serif;
+        text-decoration: none;
+        color: #fff;
+        padding: 10px 50px;
+        background: #0C5DB3;
+        display: block;
+        width: 80px;
+        margin: 0 auto;
+        height: 30px;
+        text-align: center;
+    }
+
+    #user_profile .about_user .follow a:hover, #user_profile .about_user .settings a:hover {
+        opacity:.7;
+    }
+
+#posts .container {
+    border: 1px solid #e3e4e8;
+    border-top: none;
+}
+
+#posts .title {
+    text-align: center;
+    font-family: 'Titillium Web SemiBold',sans-serif;
+    font-size: 18px;
+    margin-bottom:15px;
+}
+

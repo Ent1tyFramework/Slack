@@ -1,0 +1,78 @@
+﻿.container {
+    width: 800px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px 10px 10px 10px;
+    background: #fff;
+}
+
+.user_img, .save_changes {
+    text-align: center;
+}
+
+    .user_img img {
+        border-radius: 100px;
+        width: 180px;
+        height: 180px;
+    }
+
+    .user_img a, .save_changes a {
+        display: block;
+        text-decoration: none;
+        color: #3b3939;
+        cursor: pointer;
+        font-family: 'Tajawal Regular',sans-serif;
+        font-size: 20px;
+        padding: 15px 0;
+        margin: 5px 0;
+    }
+
+        .user_img a:hover, .save_changes a:hover {
+            background: #ebebeb;
+        }
+
+.user_data {
+    margin-top: 30px;
+    text-align: center;
+    font-family: 'Tajawal Regular',sans-serif;
+}
+
+    .user_data .group {
+        margin: 0 0 30px 0;
+        border: 1px solid #e3e4e8;
+    }
+
+        .user_data .group .elements {
+            width: 400px;
+            margin: 0 auto;
+            padding: 3px;
+            position: relative;
+        }
+
+        .user_data .group label {
+            display: inline;
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .user_data .group input {
+            font-family: 'Tajawal Regular',sans-serif;
+            font-size: 18px;
+            border: none;
+            max-width: 245px;
+            text-align: right;
+        }
+
+#userBirthday {
+    position: absolute;
+    opacity: 0;
+    right: 0;
+}
+
+#dateClone {
+    color: gray;
+    font-weight: 300;
+    padding-left: 6px;
+    font-weight: 300;
+    letter-spacing: .2px;
+}

@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Slack - Search";
+    ViewBag.Page = "Search";
+
+    if (!User.Identity.IsAuthenticated)
+    {
+        Layout = "/Views/Shared/_LayoutForAnonyms.cshtml";
+    }
+}
+
+<html>
+<head>
+    @section links{
+        <link rel="stylesheet" href="~/Content/Styles/Home/Search/search.css" />
+    }
+    @section scripts{
+        <script src="~/Scripts/Hubs/subhub.js"></script>
+        <script src="~/Scripts/Home/Search/search.js"></script>
+    }
+</head>
+<body>
+    <section id="search">
+        <div class="container">
+            <div class="search_form">
+                <h2 class="title">Find your friends and acquaintances in Slack</h2>
+                <div class="search clearfix">
+                    <div class="search_input left">
+                        <input type="text" placeholder="Enter name">
+                    </div>
+                    <div class="search_submit right">
+                        <a>Search</a>
+                    </div>
+                </div>
+            </div>
+            <div class="results">
+            </div>
+        </div>
+    </section>
+</body>
+</html>

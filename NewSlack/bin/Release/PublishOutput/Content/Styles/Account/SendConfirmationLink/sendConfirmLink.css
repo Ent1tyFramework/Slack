@@ -1,0 +1,29 @@
+﻿#body {
+    min-height: 250px;
+}
+.content{
+    text-align:center;
+}
+#title {
+    font-size: 25px;
+}
+.content h4{
+   font-weight: 400;
+}
+.content a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #021b36;
+
+    display: block;
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 400px;
+    padding: 15px 0;
+    border: 0;
+    font-family: 'Exo-Medium', sans-serif;
+    font-size: 17px;
+}
+.content a:hover{
+    opacity: .7;
+}
