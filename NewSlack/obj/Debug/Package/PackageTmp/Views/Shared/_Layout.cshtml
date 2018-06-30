@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="~/Content/Styles/Common/reset.css">
+    <link rel="stylesheet" href="~/Content/Styles/Layout/fonts.css">
+    <link rel="stylesheet" href="~/Content/Styles/Layout/main.css">
+    <style>
+        #menu .hidden_menu{
+            transition: visibility 0s, opacity 0.5s linear;
+        }
+    </style>
+    @RenderSection("links", false)
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.3.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+
+    <script src="~/Scripts/Layout/layout.js"></script>
+    <script>
+        $.ajax(
+            {
+                type: 'GET',
+                dataType: 'JSON',
+                url: '/Layout/GetCurrentUser',
+                success: function (user) {
+                    $($('#menu nav li a').first()).attr('href', '/user/' + user.UserName);
+                    $('#user_img').attr('src', user.ImagePath);
+                }
+            });
+        $.ajax(
+            {
+                type: 'GET',
+                url: '/Layout/EmailConfirmModalWindow',
+                success: function (data) {
+                    $('body').append(data);
+                }
+            });
+    </script>
+    @RenderSection("scripts", false)
+</head>
+<body>
+    <header>
+        <h2>@ViewBag.Page</h2>
+        <img id="user_img" />
+    </header>
+    <section id="content">
+        @RenderBody()
+    </section>
+    <section id="menu">
+        <div class="first_menu">
+        </div>
+        <div class="hidden_menu" id="hidden_menu" hidden>
+            <div class="title">
+                <a href="/home">Slack</a>
+            </div>
+            <nav>
+                <ul>
+                    <li>
+                        <a class="nav_profile" href="#"></a>
+                        <a href="#">My profile</a>
+                    </li>
+                    <li>
+                        <a class="nav_mail" href="/dialogs"></a>
+                        <a href="/dialogs">Messages</a>
+                    </li>
+                    <li>
+                        <a class="nav_news" href="/home"></a>
+                        <a href="/home">News</a>
+                    </li>
+                    <li>
+                        <a class="nav_search" href="/search"></a>
+                        <a href="/search">Search</a>
+                    </li>
+                    <li>
+                        <a class="nav_settings" href="/settings"></a>
+                        <a href="/settings">Settings</a>
+                    </li>
+                    <li>
+                        <a class="nav_signout" href="/signout"></a>
+                        <a href="/signout">Sign out</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <footer>
+        <h3>
+            Created by
+            <a href="/user/babaev">Islam Babaev</a>
+        </h3>
+    </footer>
+</body>
+</html>

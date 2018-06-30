@@ -15,29 +15,25 @@ $(function () {
 
     function sendToDialog(user, content, dialogId) {
 
-        var code = `
-    <div class="message">
-        <div class="message_header">
-            <img src="`+ user.ImagePath + `" alt="">
-            <a href="/user/`+ user.UserName + `">` + user.FirstName + ` ` + user.LastName + `</a>
-        </div>
-        <div class="message_content">
-            <p>`+ content + `</p>
-    </div>`;
+        var code = `<div class="message row">
+                        <div class="user_img">
+                            <img src="`+ user.ImagePath +`" class="rounded-circle" />
+                        </div>
+                        <div class="content col-10 text-light">
+                            <div>
+                                <a class="font-weight-bold text-light" href="/user/`+ user.UserName + `">` + user.FirstName + ` ` + user.LastName +`</a>
+                            </div>
+                            <div>
+                                <p>`+ content + `</p>
+                            </div>
+                        </div>
+                    </div>`;
 
         var dialog_content = $('.dialog_content');
 
-        if ($('.messages').length == 0) {
+        if ($('.message').length == 0) {
             dialog_content.empty();
             dialog_content.append('<div class="messages"></div>');
-
-            //attach messages div to bottom of .dialogs_content
-            var full_height = $('.dialog_content').height();
-            var messages_height = $('.messages').height();
-
-            if (messages_height < full_height) {
-                $('.messages').css('margin-top', (full_height - messages_height) - 20);
-            }
         }
 
         var lastIndex = document.URL.lastIndexOf('/');

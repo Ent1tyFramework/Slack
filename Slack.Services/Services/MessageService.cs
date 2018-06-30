@@ -1,5 +1,10 @@
-﻿using Slack.Data.Entities;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin;
+using Slack.Data.Entities;
 using Slack.Data.Interfaces;
+using Slack.Identity.Contexts;
+using Slack.Identity.Entities;
 using Slack.Identity.Managers;
 using Slack.Services.Interfaces;
 using System;
@@ -7,17 +12,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Slack.Services.Services
 {
     public class MessageService : IMessageService
     {
-        private readonly ApplicationUserManager userManager;
+        private readonly ApplicationUserManager userManager =
+            new ApplicationUserManager(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+
         private readonly IRepositoryManager repositoryManager;
 
-        public MessageService(ApplicationUserManager userManager, IRepositoryManager repositoryManager)
+        public MessageService(IRepositoryManager repositoryManager)
         {
-            this.userManager = userManager;
             this.repositoryManager = repositoryManager;
         }
 

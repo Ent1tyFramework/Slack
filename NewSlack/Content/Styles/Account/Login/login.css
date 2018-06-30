@@ -1,47 +1,59 @@
-﻿.body .container1, .container2 {
-    height: 600px;
-    border-left: none;
+﻿@media screen and (max-width: 576px) {
+    .form-horizontal > hr {
+        margin-bottom: 30px;
+    }
+
+    input[type=submit] {
+        width: 100px;
+    }
+
+    .form-horizontal {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-55%);
+    }
 }
-.container3 {
-    background: #0b488a;
-    width: 60%;
-    height: 343px;
-    clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
+@media screen and (min-width: 577px) {
+    .form-horizontal {
+        margin-top: 60px;
+    }
 }
-.container3 h2 {
+
+.form-horizontal {
+    min-width: 290px;
+}
+
+input[type=submit] {
+    width: 150px;
+    font-size: 18px;
+}
+
+.container {
+    max-width: 650px;
+}
+
+.uneditable-input {
+    border-color: #007BFF;
+}
+
+.input-validation-error {
+    border-color: red;
+}
+
+.form-horizontal > h4:first-child {
     font-family: 'Titillium Web Bold', sans-serif;
-    font-weight: 400;
-    font-size: 35px;
+    color: #0056b3;
+}
+.form-group {
+    font-family: 'Tajawal Regular', sans-serif;
+}
+li{
+    list-style-type: none;
+}
+.validation-summary-errors{
     text-align: center;
-    color: #fff;
-    margin-bottom: 30px;
 }
-.go_register {
-    width: 370px;
-    margin: 0 auto;
-    margin-top: 50px;
-    position: relative;
-    right: 60px;
+.validation-summary-errors ul{
+    padding: 0;
 }
-    .go_register a {
-        background-color: #041930;
-        text-decoration: none;
-        text-align: center;
-        color: #fff;
-        padding: 15px 0;
-        width: 100%;
-        display: block;
-        font-family: 'Tajawal Regular', sans-serif;
-        font-size: 21px;
-    }
-        .go_register a:hover {
-            opacity: .6;
-        }
-.forgot_pass a {
-    text-decoration: none;
-    color: inherit;
-    padding: 10px 5px;
-}
-    .forgot_pass a:hover {
-        background: #093e75;
-    }

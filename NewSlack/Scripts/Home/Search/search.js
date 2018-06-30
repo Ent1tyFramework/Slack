@@ -1,15 +1,15 @@
 ﻿$(function () {
-   $('.search_input input').keypress(function (e) {
+    $('.search input').keypress(function (e) {
         if (e.which == 13) {
-            $('.search_submit a').trigger('click');
+            $('.search button').trigger('click');
             return false;
         }
     });
-    $('.search_submit a').click(function () {
+    $('.search button').click(function () {
         $.ajax({
             type: 'POST',
             url: '/search',
-            data: { query: $('.search_input input').val() },
+            data: { query: $('.search input').val() },
             success: function (users)
             {
                 $('.results').empty();

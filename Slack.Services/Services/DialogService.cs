@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin;
+using Newtonsoft.Json;
 using Slack.Data.Entities;
 using Slack.Data.Interfaces;
 using Slack.Identity.Managers;
@@ -8,17 +10,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Slack.Identity.Entities;
+using Slack.Identity.Contexts;
 
 namespace Slack.Services.Services
 {
     public class DialogService : IDialogService
     {
-        private readonly ApplicationUserManager userManager;
+        private readonly ApplicationUserManager userManager = 
+            new ApplicationUserManager(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+
         private readonly IRepositoryManager repositoryManager;
 
-        public DialogService(ApplicationUserManager userManager, IRepositoryManager repositoryManager)
+        public DialogService(IRepositoryManager repositoryManager)
         {
-            this.userManager = userManager;
             this.repositoryManager = repositoryManager;
         }
 

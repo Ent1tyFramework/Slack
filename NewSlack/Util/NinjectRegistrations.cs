@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.SignalR;
+using Ninject;
 using Ninject.Modules;
 using Slack.Common.Cache;
 using Slack.Common.Interfaces;
@@ -11,6 +14,9 @@ using Slack.Identity.Entities;
 using Slack.Identity.Managers;
 using Slack.Services.Interfaces;
 using Slack.Services.Managers;
+using System;
+using System.Linq;
+using System.Web;
 
 namespace Slack.Util
 {
@@ -18,19 +24,14 @@ namespace Slack.Util
     {
         public override void Load()
         {
-            var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
-            var userManager = new ApplicationUserManager(userStore);
-
             var dbContext = new DataDbContext();
             var repositoryManager = new RepositoryManager(dbContext);
 
-            Bind<UserManager<ApplicationUser>>().To<ApplicationUserManager>().WithConstructorArgument("userStore", userStore);
-
-            Bind<IRepositoryManager>().To<RepositoryManager>().WithConstructorArgument("dbContext", dbContext);
+            Bind<IRepositoryManager>().To<RepositoryManager>()
+                .WithConstructorArgument("dbContext", dbContext);
             Bind<ICacheRepository>().To<CacheRepository>();
-            Bind<IServicesManager>().To<ServicesManager>().WithConstructorArgument("userManager", userManager)
+            Bind<IServicesManager>().To<ServicesManager>()
                 .WithConstructorArgument("repositoryManager", repositoryManager);
-
 
         }
     }

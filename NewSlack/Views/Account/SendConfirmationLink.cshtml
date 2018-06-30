@@ -19,17 +19,25 @@
 
     <link rel="stylesheet" href="~/Content/Styles/Common/reset.css" />
     <link rel="stylesheet" href="~/Content/Styles/Layout/fonts.css">
-    <link rel="stylesheet" href="~/Content/Styles/Account/ForgotPassword/forgot_pass.css" />
-    <link rel="stylesheet" href="~/Content/Styles/Account/SendConfirmationLink/sendConfirmLink.css"/>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/Styles/Account/SendConfirmationLink/sendConfirmLink.css" />
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
 </head>
 <body>
-    <section id="body">
-        <div class="content">
-            <h2 id="title">@Model</h2>
-            <h4>the time to send a message can take up to 5 minutes</h4>
-            <a id="refresh_page">Message didn't reach?</a>
+    <div class="container">
+        <div class="content text-light text-center col-11">
+            <h4 class="text-center text-uppercase">slack</h4>
+            <hr class="bg-primary" />
+            <div class="info">
+                <h3 id="title">@Model</h3>
+                <h4 class="font-weight-light">the time to send a message can take up to 5 minutes</h4>
+            </div>
+            <div class="refresh">
+                <a id="refresh_page" class="text-primary">Message didn't reach?</a>
+            </div>
         </div>
-    </section>
+    </div>
 </body>
 </html>
-

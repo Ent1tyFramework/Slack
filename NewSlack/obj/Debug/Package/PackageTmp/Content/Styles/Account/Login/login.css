@@ -1,0 +1,47 @@
+﻿.body .container1, .container2 {
+    height: 600px;
+    border-left: none;
+}
+.container3 {
+    background: #0b488a;
+    width: 60%;
+    height: 343px;
+    clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
+}
+.container3 h2 {
+    font-family: 'Titillium Web Bold', sans-serif;
+    font-weight: 400;
+    font-size: 35px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 30px;
+}
+.go_register {
+    width: 370px;
+    margin: 0 auto;
+    margin-top: 50px;
+    position: relative;
+    right: 60px;
+}
+    .go_register a {
+        background-color: #041930;
+        text-decoration: none;
+        text-align: center;
+        color: #fff;
+        padding: 15px 0;
+        width: 100%;
+        display: block;
+        font-family: 'Tajawal Regular', sans-serif;
+        font-size: 21px;
+    }
+        .go_register a:hover {
+            opacity: .6;
+        }
+.forgot_pass a {
+    text-decoration: none;
+    color: inherit;
+    padding: 10px 5px;
+}
+    .forgot_pass a:hover {
+        background: #093e75;
+    }

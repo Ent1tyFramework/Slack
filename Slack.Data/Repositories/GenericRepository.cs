@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -140,7 +141,8 @@ namespace Slack.Data.Repositories
             {
                 using (dbContext = dbContext.GetContext())
                 {
-                    dbContext.Entry<T>(entity).State = EntityState.Modified;
+                    dbContext.Set<T>().AddOrUpdate(entity);
+                    //dbContext.Entry<T>(entity).State = EntityState.Modified;
                     await dbContext.SaveChangesAsync();
                 }
             }

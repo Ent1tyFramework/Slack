@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.SignalR;
 using Slack.Data.Entities;
 using Slack.Data.Interfaces;
+using Slack.Identity.Contexts;
 using Slack.Identity.Entities;
+using Slack.Identity.Managers;
 using Slack.Services.Interfaces;
 
 namespace Slack.Hubs
@@ -18,10 +23,10 @@ namespace Slack.Hubs
         private readonly IServicesManager servicesManager;
         private readonly IRepositoryManager repositoryManager;
 
-        public PostHub(UserManager<ApplicationUser> userManager, IServicesManager servicesManager,
+        public PostHub(ApplicationUserManager userManager, IServicesManager servicesManager,
             IRepositoryManager repositoryManager)
         {
-            this.userManager = userManager;
+            this.userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             this.servicesManager = servicesManager;
             this.repositoryManager = repositoryManager;
         }
@@ -64,7 +69,7 @@ namespace Slack.Hubs
                 //output to client
                 if (isAdded)
                 {
-                    var currentUser = await userManager.FindByIdAsync(currentId);
+                    var currentUser = userManager.FindById(currentId);
 
                     if (currentUser != null)
                         Clients.Group(currentId).send(content, currentUser);

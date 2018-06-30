@@ -55,7 +55,7 @@
                         send(file_names);
                     },
                     error: function (e) {
-                        alert('Error: ' + e.statusText)
+                        alert('Error: ' + e.responseText)
                     }
                 });
 

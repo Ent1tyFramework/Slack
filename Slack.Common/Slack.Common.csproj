@@ -103,6 +103,7 @@
     <Compile Include="Encryption\Encryptor.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="Cache\Interfaces\ICacheRepository.cs" />
+    <Compile Include="Image.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

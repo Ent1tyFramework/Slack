@@ -1,117 +1,137 @@
-﻿.left {
-    float: left;
+﻿.puser_img > img {
+    width: 230px;
+    height: 230px;
 }
 
-.right {
-    float: right;
-}
-.posts{
-    margin:0;
-}
-.clearfix:after {
-    content: '';
-    display: table;
-    width: 100%;
-    clear: both;
+.puser_name {
+    margin-top: 20px;
+    font-size: 28px;
 }
 
-#user_profile {
-    margin-top: 50px;
+.puser_data, .start_messaging, .follow, .edit {
+    font-family: 'Tajawal Regular',sans-serif;
 }
-    .container {
-        width: 800px;
-        margin: 0 auto;
-        background: #fff;
-        padding: 10px;
-        overflow: auto;
+
+    .puser_data .small {
+        font-size: 100%;
     }
 
-#user_profile .container {
-    border: 1px solid #e3e4e8;
+.actions {
+    margin-top: 20px;
 }
 
-#user_profile .about_user {
-    padding: 10px 0;
-    overflow: hidden;
+.follow button {
+    min-width: 100px;
 }
-#more_actions {
+
+.follow .following {
+    background-color: #343A40;
+    color: #fff;
+}
+
+    .follow .following:hover {
+        background-color: transparent;
+        color: #343A40;
+        border-color: #343A40;
+    }
+
+.start_messaging .btn, .edit .btn {
     width: 200px;
-    border: 1px solid #dedede;
-    border-radius: 3px;
-    background: #fff;
-    position: absolute;
+    color: #fff;
+    background-color: #094585;
+    border-color: #094585;
+    margin-top: 20px;
 }
-    #more_actions li {
-        font-family: 'Titillium Web SemiBold',sans-serif;
-        text-align: center;
-        color: #0C5DB3;
-        margin: 2px 0;
-        cursor: pointer;
+
+    .start_messaging .btn:hover, .edit .btn:hover {
+        background-color: transparent;
+        color: #094585;
     }
-        #more_actions li:hover {
-            color: #1683f7;
-        }
 
-        #user_profile .container .user_img img {
-            width: 180px;
-            height: 180px;
-            border-radius: 100px;
-        }
-
-#user_profile .container .user_data {
-    font-family: 'Titillium Web SemiBold',sans-serif;
-    display: inline-block;
-    margin-left: 60px;
+.start_messaging {
+    margin-top: 20px;
 }
 
-    #user_profile .container .user_data h3 {
-        font-weight: 400;
+    .start_messaging h4 {
+        font-size: 20px;
+        line-height: 1.2;
+    }
+
+        .start_messaging h4 a {
+            color: #000;
+        }
+@media screen and (max-width: 1000px) {
+    .puser_img > img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .puser_name > h2 {
+        font-size: 25px;
+    }
+
+    .puser_data .small {
+        font-size: 95%;
+    }
+
+    .start_messaging h4 {
+        font-size: 19px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .puser_img > img {
+        width: 140px;
+        height: 140px;
+    }
+
+    .puser_name > h2{
         font-size: 24px;
-        color: #0C5DB3;
     }
-
-    #user_profile .container .user_data h4 {
-        font-weight: 400;
-    }
-
-#user_profile .about_user > img {
-    width: 24px;
-    padding: 10px;
-    margin-right: 40px;
-    margin-top: 10px;
-    cursor: pointer;
 }
 
-#user_profile .about_user .follow, #user_profile .about_user .settings {
-    margin-top: 50px;
-}
-
-    #user_profile .about_user .follow a, #user_profile .about_user .settings a {
-        font-family: 'Titillium Web SemiBold',sans-serif;
-        text-decoration: none;
-        color: #fff;
-        padding: 10px 50px;
-        background: #0C5DB3;
-        display: block;
-        width: 80px;
-        margin: 0 auto;
-        height: 30px;
-        text-align: center;
+@media screen and (max-width: 570px) {
+    .puser_img > img {
+        width: 140px;
+        height: 140px;
     }
 
-    #user_profile .about_user .follow a:hover, #user_profile .about_user .settings a:hover {
-        opacity:.7;
+    .puser_name > h2{
+        font-size: 23px;
     }
 
-#posts .container {
-    border: 1px solid #e3e4e8;
-    border-top: none;
+    .start_messaging h4 {
+        font-size: 18px;
+    }
+
+    .body_container {
+        margin-top: 0;
+    }
+
+    .user_info {
+        height: calc(100vh - 57px);
+        position: relative;
+    }
+
+        .user_info > div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-55%);
+        }
 }
 
-#posts .title {
-    text-align: center;
-    font-family: 'Titillium Web SemiBold',sans-serif;
-    font-size: 18px;
-    margin-bottom:15px;
-}
+@media screen and (max-width: 400px) {
+    .puser_img > img {
+        width: 125px;
+        height: 125px;
+    }
 
+    .puser_name > h2{
+        font-size: 22px;
+    }
+
+    .start_messaging h4 {
+        font-size: 17px;
+    }
+}

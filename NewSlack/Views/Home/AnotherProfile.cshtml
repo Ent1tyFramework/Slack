@@ -1,113 +1,81 @@
 ﻿@using Slack.Identity.Entities
 @model  Tuple<ApplicationUser, bool>
 @{
-    ViewBag.Title = "Slack user - Islam Babaev";
-    ViewBag.Page = "Profile";
-    if (!User.Identity.IsAuthenticated)
-    {
-        Layout = "/Views/Shared/_LayoutForAnonyms.cshtml";
-    }
-
     var user = Model.Item1;
     var isSubscriber = Model.Item2;
 }
 <html>
 <head>
-    @section links{
-        <link rel="stylesheet" href="~/Content/Styles/Home/Profile/profile.css" />
-    }
-    @section scripts{
-        <script src="~/Scripts/Home/Posts/posts_load.js"></script>
-        <script src="~/Scripts/Hubs/subhub.js"></script>
-        <script>
-            $(function () {
-                //posts_load
-                $('div.posts').empty();
-                only = true;
-                userId = '@user.Id';
-                data_loading();
+    <link rel="stylesheet" href="~/Content/Styles/Home/Posts/posts.css">
+    <link rel="stylesheet" href="~/Content/Styles/Home/Profile/profile.css">
 
-                //subhub
-                $('#follow').click(function () {
+    <script src="~/Scripts/Hubs/subhub.js"></script>
+    <script src="~/Scripts/Hubs/posthub.js"></script>
+    <script src="~/Scripts/Home/Posts/posts_load.js"></script>
+    <script src="~/Scripts/Home/Posts/post_upload.js"></script>
+    <script>
+        $(function () {
+               $('.follow button').click(function () {
                 subscribe('@user.Id');
-                });
-
-                //show more_actions div
-                $('#post_menu_icon').click(function (e) {
-                    $('#more_actions').css('left', e.clientX);
-                    $('#more_actions').css('top', e.clientY);
-                    $('#more_actions').removeAttr('hidden');
-                });
-
-                //start messaging
-                $('#go_message').click(function () {
-                    window.location.href = '/dialog/create-private/@user.Id';
-                });
-
-                //close more_actions div     
-                $('#close').click(function () {
-                    $('#more_actions').attr('hidden','');
-                });
-            });
-        </script>
-    }
+               });
+        });
+        function afterSubscribe() {
+            $('.follow button').removeClass('btn-outline-dark');
+            $('.follow button').addClass('following');
+        }
+        function afterUnsubscribe() {
+            $('.follow button').removeClass('following');
+            $('.follow button').addClass('btn-outline-dark');
+        }
+    </script>
 </head>
-<body>
-    <section id="user_profile">
-        <div class="container">
-            <div class="about_user clearfix">
-                <div class="user_img left">
-                    <img src="@user.ImagePath" alt="">
-                </div>
-                <img class="right" src="~/Content/Images/post_menu.png" id="post_menu_icon" alt="">
-                <div id="more_actions" hidden>
-                    <ul>
-                        <li id="go_message">Start messaging</li>
-                        <li>Report user</li>
-                        <li>Block user</li>
-                        <li id="close">Close</li>
-                    </ul>
-                </div>
-                <div class="user_data">
-                    <h3>@user.FirstName @user.LastName</h3>
-                    @if (user.Birthday.HasValue)
-                    {
-                        DateTime birthday = user.Birthday.Value;
-                        DateTime now = DateTime.Today;
+<body class="bg-light">
+    <div class="user_info">
+        <div>
+            <div class="puser_img">
+                <img class="rounded-circle d-block mx-auto" src="@user.ImagePath" />
+            </div>
+            <div class="puser_name">
+                <h2 class="text-center">@user.FirstName @user.LastName</h2>
+            </div>
+            <div class="puser_data text-center">
+                @if (user.Birthday.HasValue)
+                {
+                    DateTime birthday = user.Birthday.Value;
+                    DateTime now = DateTime.Today;
 
-                        int age = now.Year - birthday.Year;
-                        if (now < birthday.AddYears(age))
-                        {
-                            age--;
-                        }
-                        <h4>@age years</h4>
-                    }
-                    @if (user.City != null && user.Country != null)
+                    int age = now.Year - birthday.Year;
+                    if (now < birthday.AddYears(age))
                     {
-                        <h4>@user.City, @user.Country</h4>
+                        age--;
                     }
-                </div>
+                    <h5 class="small">@age years</h5>
+                }
+                @if (user.City != null && user.Country != null)
+                {
+                    <h5 class="small">from @user.City, @user.Country</h5>
+                }
+            </div>
+            <div class="actions">
                 <div class="follow">
                     @if (isSubscriber)
                     {
-                        <a id="follow">Unsubscribe</a>
+                        <button class="btn  d-block mx-auto .focus-border-dark following"><i class="fas fa-users"></i> Following</button>
                     }
                     else
                     {
-                        <a id="follow">Subscribe</a>
+                        <button class="btn btn-outline-dark d-block mx-auto"><i class="fas fa-users"></i> Follow</button>
                     }
+                </div>
+                <div class="start_messaging">
+                    <h4 class="text-center">Maybe you want <mark>to tell</mark> him/her something?</h4>
+                    <a href="/dialog/create-private/@user.Id" class="btn d-block mx-auto text-uppercase small"><i class="fab fa-telegram-plane"></i> Start messaging</a>
                 </div>
             </div>
         </div>
-    </section>
-    <section id="posts">
-        <div class="container">
-            <div class="title">Posts</div>
-            <div class="posts">
-                <!--render posts from cache-->
-                @{Html.RenderAction("Posts", "Home", new { skip = 0, take = 10, only = true, userId = user.Id, fromCache = true });}
-            </div>
-        </div>
-    </section>
+    </div>
+    <div class="posts">
+        @{Html.RenderAction("Posts", new { skip = 0, take = 10, only = true,userId = user.Id, fromCache = true });}
+    </div>
 </body>
 </html>

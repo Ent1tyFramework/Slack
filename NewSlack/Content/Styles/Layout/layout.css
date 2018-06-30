@@ -1,0 +1,70 @@
+﻿.container-fluid {
+    background-color: #094585;
+    padding: 0;
+}
+
+.container {
+    max-width: 815px;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+nav.navbar {
+    padding: 3px 0 3px 0;
+}
+
+.navbar-brand, .add_post span {
+    font-family: 'Titillium Web Bold', sans-serif;
+}
+
+.navbar-brand {
+    padding-top: 3.5px;
+    font-size: 28px;
+    margin-left: 20px;
+    margin-right: 0;
+}
+
+button.navbar-toggler {
+    border: 0;
+    border-style: none;
+}
+
+    button.navbar-toggler:focus, button.navbar-toggler:active {
+        outline: none !important;
+        box-shadow: none;
+    }
+
+.nav-item {
+    margin: 0 1.5px;
+}
+
+    .nav-item:hover {
+        background-color: #0c57a7;
+    }
+
+.navbar-nav .nav-link {
+    padding-left: 15px;
+    font-family: 'Titillium Web Regular',sans-serif;
+}
+
+.body_container {
+    margin-top: 40px;
+    padding: 0;
+    max-width: 775px;
+}
+
+#headerNavbar{
+    margin-right: 10px;
+}
+
+@media screen and (max-width:570px) {
+    .body_container {
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .body_container {
+        margin-top: 30px;
+    }
+}

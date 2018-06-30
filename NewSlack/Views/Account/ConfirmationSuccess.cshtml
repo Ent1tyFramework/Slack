@@ -7,22 +7,29 @@
 <head>
     <link rel="stylesheet" href="~/Content/Styles/Common/reset.css" />
     <link rel="stylesheet" href="~/Content/Styles/Layout/fonts.css">
-    <link rel="stylesheet" href="~/Content/Styles/Account/ForgotPassword/forgot_pass.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Content/Styles/Account/SendConfirmationLink/sendConfirmLink.css" />
-    <style>
-        #body{
-            min-height: unset;
-        }
-    </style>
+
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Scripts/Account/ConfirmSuccess/confirm-success.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            setTimeout(function () {
+                window.location.href = "/news";
+            }, 3000);
+        });
+    </script>
 </head>
 <body>
-    <section id="body">
-        <div class="content">
-            <h2 id="title">@Model</h2>
-            <h4>In few seconds you will be redirected to hub</h4>
+    <div class="container">
+        <div class="content text-light text-center col-11">
+            <h4 class="text-center text-uppercase">slack</h4>
+            <hr class="bg-primary" />
+            <div class="info">
+                <h3 id="title">@Model</h3>
+                <h4 class="font-weight-light">In few seconds you will be redirected to hub</h4>
+            </div>
         </div>
-    </section>
+    </div>
 </body>
 </html>

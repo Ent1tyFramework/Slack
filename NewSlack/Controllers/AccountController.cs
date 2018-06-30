@@ -8,18 +8,17 @@ using System;
 using Slack.Models.ViewModels;
 using Slack.Identity.Entities;
 using System.Linq;
-using Slack.Common.Encryption;
-using System.Globalization;
 using Microsoft.AspNet.Identity;
 using Slack.Services.Interfaces;
+using Slack.Common.Enums;
 
 namespace Slack.Controllers
 {
     public class AccountController : Controller
     {
         private ApplicationUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-        private ApplicationRoleManager RoleManager => HttpContext.GetOwinContext().GetUserManager<ApplicationRoleManager>();
         private IAuthenticationManager AuthManager => HttpContext.GetOwinContext().Authentication;
+
         private readonly IServicesManager servicesManager;
 
         public AccountController(IServicesManager servicesManager)
@@ -54,9 +53,12 @@ namespace Slack.Controllers
                         LastName = model.LastName,
                         Country = model.Country,
                         City = model.City,
-                        Birthday = model.Birthday,
-                        ImagePath = "/Content/Images/user_default.jpg"
+                        Birthday = model.Birthday
                     };
+
+                    if (model.Gender == Gender.Male)
+                        user.ImagePath = "/Content/Images/male_user_default.png";
+                    else user.ImagePath = "/Content/Images/female_user_default.png";
 
                     var result = await UserManager.CreateAsync(user, model.Password);
 
@@ -174,7 +176,7 @@ namespace Slack.Controllers
                     }
                     else ModelState.AddModelError("", "Invalid login or password!");
                 }
-                catch
+                catch(Exception ex)
                 {
                     ModelState.AddModelError("", "Invalid login or password!");
                 }
@@ -215,7 +217,7 @@ namespace Slack.Controllers
                 {
                     return RedirectToAction("SendEmailPasswordResetLink", new { userId = user.Id });
                 }
-                else ModelState.AddModelError("", $"Email {model.Email} not found or not confirmed. Recovery imposible");
+                else ModelState.AddModelError("", $"Invalid email");
             }
             return View("ForgotPassword", model);
         }

@@ -3,11 +3,15 @@ $(function () {
     subHub = $.connection.subHub;
 
     subHub.client.subscribe = function () {
-        $('#follow').text('Unsubscribe');
+        afterSubscribe(); 
+        $('.follow button').empty();
+        $('.follow button').append('<i class="fas fa-users"></i> Following');
     }
 
     subHub.client.unsubscribe = function () {
-        $('#follow').text('Subscribe');
+        afterUnsubscribe(); 
+        $('.follow button').empty();
+        $('.follow button').append('<i class="fas fa-users"></i> Follow');
     }
 
     subHub.client.redirectToLogin = function () {

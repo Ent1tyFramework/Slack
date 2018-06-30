@@ -1,11 +1,16 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using Slack.Data.Entities;
 using Slack.Data.Interfaces;
+using Slack.Identity.Contexts;
 using Slack.Identity.Entities;
+using Slack.Identity.Managers;
 using Slack.Services.Interfaces;
 using System.Threading.Tasks;
+using System.Web;
 using static Slack.Services.SubService;
 
 namespace Slack.Hubs
@@ -16,9 +21,9 @@ namespace Slack.Hubs
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IServicesManager servicesManager;
 
-        public SubHub(UserManager<ApplicationUser> userManager, IServicesManager servicesManager)
+        public SubHub(ApplicationUserManager userManager, IServicesManager servicesManager)
         {
-            this.userManager = userManager;
+            this.userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             this.servicesManager = servicesManager;
         }
 

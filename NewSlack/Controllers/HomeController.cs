@@ -1,6 +1,5 @@
 ﻿using Slack.Data.Entities;
 using Slack.Data.Interfaces;
-using Slack.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +7,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using System.Data.Entity;
-using Slack.Data.Managers;
-using Slack.Hubs;
 using Slack.Identity.Managers;
 using Microsoft.AspNet.Identity.Owin;
 using Slack.Common.Interfaces;
@@ -18,14 +14,14 @@ using Slack.Identity.Entities;
 using Newtonsoft.Json;
 using Slack.Common.Attributes;
 using System.IO;
-using System.Threading;
+using Slack.Common;
 using Slack.Models.ViewModels;
 using Slack.Services.Interfaces;
-using Newtonsoft.Json.Linq;
 using Slack.Models.Entities;
 
 namespace Slack.Controllers
 {
+    //Remote degub target: 193.124.115.81:4022
     [Authorize]
     public class HomeController : Controller
     {
@@ -53,27 +49,30 @@ namespace Slack.Controllers
         //because child pages in asp.net mvc 5 can't be asynchronous
         [AllowAnonymous]
         public PartialViewResult Posts(int skip, int take, bool only, string userId,
-            bool fromCache = false)
+            bool fromCache = false, bool first = false)
         {
             if (userId == null)
                 userId = User.Identity.GetUserId();
 
-            if (fromCache)
-            {
-                //get posts from cache, if any
-                try
-                {
-                    var postsFromCache = (IEnumerable<Post>)cacheRepository.First("posts");
-                    var usersFromCache = (IEnumerable<ApplicationUser>)cacheRepository.First("users");
+            //
+            //For revision
+            //
+            //if (fromCache)
+            //{
+            //    //get posts from cache, if any
+            //    try
+            //    {
+            //        var postsFromCache = (IEnumerable<Post>)cacheRepository.First("posts");
+            //        var usersFromCache = (IEnumerable<ApplicationUser>)cacheRepository.First("users");
 
-                    if (postsFromCache != null && usersFromCache != null)
-                    {
-                        return PartialView("Posts", Tuple.Create(postsFromCache, usersFromCache));
-                    }
-                    else { }
-                }
-                catch { }
-            }
+            //        if (postsFromCache != null && usersFromCache != null)
+            //        {
+            //            return PartialView("Posts2", Tuple.Create(postsFromCache, usersFromCache));
+            //        }
+            //        else { }
+            //    }
+            //    catch { }
+            //}
 
             //get posts from database
             var tuple = servicesManager.PostService.Get(skip, take, only, userId);
@@ -82,8 +81,11 @@ namespace Slack.Controllers
             IEnumerable<ApplicationUser> users = tuple.Item2;
 
             //add to cache
-            cacheRepository.Add(posts, "posts");
-            cacheRepository.Add(users, "users");
+            //cacheRepository.Add(posts, "posts");
+            //cacheRepository.Add(users, "users");
+
+            if (posts.Count() == 0 && !first)
+                return null;
 
             return PartialView("Posts", tuple);
         }
@@ -95,39 +97,22 @@ namespace Slack.Controllers
             var files = Request.Files;
             if (files.Count > 0)
             {
-                string[] paths = new string[files.Count + 1];
-                for (int i = 0; i < files.Count; i++)
-                {
-                    var file = files[i];
-
-                    //if file is not image type(jpg,png)
-                    if (!file.ContentType.Contains("jpg") && !file.ContentType.Contains("jpeg")
-                        && !file.ContentType.Contains("png"))
-                        throw new Exception("Couldn't upload file");
-
-                    string virtualPath = $"/Content/Users/Images/{User.Identity.GetUserId()}";
-                    string physicPath = Server.MapPath(virtualPath);
-
-                    if (!Directory.Exists(physicPath))
-                        Directory.CreateDirectory(physicPath);
-
-                    physicPath += $"/{file.FileName}";//to save file
-                    file.SaveAs(physicPath);
-
-                    virtualPath += $"/{file.FileName}"; //in order to return full 
-                    paths[i] = virtualPath; //virtual path to the client
-                }
-                return Json(JsonConvert.SerializeObject(paths));
+                return Json(files.Upload());
             }
             else throw new Exception("Couldn't upload file");
         }
 
         [AllowAnonymous]
+        [Route("myprofile")]
         [Route("user/{login}")]
         public async Task<ActionResult> UserProfile(string login)
         {
-            if (login == null && User.Identity.IsAuthenticated)
-                login = (await UserManager.FindByIdAsync(User.Identity.GetUserId())).UserName;
+            if (login == null)
+            {
+                if (User.Identity.IsAuthenticated)
+                    login = User.Identity.Name;
+                else return Redirect("/login");
+            }
 
             var user = await UserManager.FindByNameAsync(login);
 
@@ -174,7 +159,7 @@ namespace Slack.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("settings")]
-        public async Task<ActionResult> Settings(EditModel model)
+        public async Task<ActionResult> Settings(EditModel model, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
@@ -183,6 +168,9 @@ namespace Slack.Controllers
 
                 if (user != null)
                 {
+                    if (image != null)
+                        model.Image = image.Upload();
+
                     #region Change user values
                     user.FirstName = model.FirstName;
                     user.LastName = model.LastName;
@@ -284,7 +272,7 @@ namespace Slack.Controllers
             string currentId = User.Identity.GetUserId();
 
             var dialog = await repositoryManager.Set<Dialog>()
-                .FirstWithIncludesAsync(d => d.Id == dialogId,i => i.Messages);
+                .FirstWithIncludesAsync(d => d.Id == dialogId, i => i.Messages);
 
             if (dialog == null)
                 return View("Error");

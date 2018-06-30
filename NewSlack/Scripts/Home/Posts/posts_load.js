@@ -5,17 +5,17 @@ var userId;
 $(window).scroll(function () {
     var maxHeight = (document.scrollingElement.scrollHeight - document.scrollingElement.clientHeight) - 300;
 
-    if (document.scrollingElement.scrollTop >= maxHeight && !isCall) {
+    if ($('div.post').length > 0 && document.scrollingElement.scrollTop >= maxHeight && !isCall) {
         data_loading();
     }
 });
 
-function data_loading() {
+function data_loading(isFirstCall) {
     //render posts from DB
     $.ajax({
         type: 'GET',
         url: '/Home/Posts',
-        data: { skip: $('div.post').length, take: 10, only: only, userId: userId },
+        data: { skip: $('div.post').length, take: 10, only: only, userId: userId, first: isFirstCall  },
         beforeSend: function () {
             isCall = true;
         },

@@ -1,0 +1,28 @@
+﻿@model string
+@{
+    Layout = null;
+    ViewBag.Title = "Slack - Email confirmation";
+}
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/Styles/Common/reset.css" />
+    <link rel="stylesheet" href="~/Content/Styles/Layout/fonts.css">
+    <link rel="stylesheet" href="~/Content/Styles/Account/ForgotPassword/forgot_pass.css" />
+    <link rel="stylesheet" href="~/Content/Styles/Account/SendConfirmationLink/sendConfirmLink.css" />
+    <style>
+        #body{
+            min-height: unset;
+        }
+    </style>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/Account/ConfirmSuccess/confirm-success.js"></script>
+</head>
+<body>
+    <section id="body">
+        <div class="content">
+            <h2 id="title">@Model</h2>
+            <h4>In few seconds you will be redirected to hub</h4>
+        </div>
+    </section>
+</body>
+</html>

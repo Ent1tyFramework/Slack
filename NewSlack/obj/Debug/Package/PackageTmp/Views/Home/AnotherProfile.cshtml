@@ -1,0 +1,113 @@
+﻿@using Slack.Identity.Entities
+@model  Tuple<ApplicationUser, bool>
+@{
+    ViewBag.Title = "Slack user - Islam Babaev";
+    ViewBag.Page = "Profile";
+    if (!User.Identity.IsAuthenticated)
+    {
+        Layout = "/Views/Shared/_LayoutForAnonyms.cshtml";
+    }
+
+    var user = Model.Item1;
+    var isSubscriber = Model.Item2;
+}
+<html>
+<head>
+    @section links{
+        <link rel="stylesheet" href="~/Content/Styles/Home/Profile/profile.css" />
+    }
+    @section scripts{
+        <script src="~/Scripts/Home/Posts/posts_load.js"></script>
+        <script src="~/Scripts/Hubs/subhub.js"></script>
+        <script>
+            $(function () {
+                //posts_load
+                $('div.posts').empty();
+                only = true;
+                userId = '@user.Id';
+                data_loading();
+
+                //subhub
+                $('#follow').click(function () {
+                subscribe('@user.Id');
+                });
+
+                //show more_actions div
+                $('#post_menu_icon').click(function (e) {
+                    $('#more_actions').css('left', e.clientX);
+                    $('#more_actions').css('top', e.clientY);
+                    $('#more_actions').removeAttr('hidden');
+                });
+
+                //start messaging
+                $('#go_message').click(function () {
+                    window.location.href = '/dialog/create-private/@user.Id';
+                });
+
+                //close more_actions div     
+                $('#close').click(function () {
+                    $('#more_actions').attr('hidden','');
+                });
+            });
+        </script>
+    }
+</head>
+<body>
+    <section id="user_profile">
+        <div class="container">
+            <div class="about_user clearfix">
+                <div class="user_img left">
+                    <img src="@user.ImagePath" alt="">
+                </div>
+                <img class="right" src="~/Content/Images/post_menu.png" id="post_menu_icon" alt="">
+                <div id="more_actions" hidden>
+                    <ul>
+                        <li id="go_message">Start messaging</li>
+                        <li>Report user</li>
+                        <li>Block user</li>
+                        <li id="close">Close</li>
+                    </ul>
+                </div>
+                <div class="user_data">
+                    <h3>@user.FirstName @user.LastName</h3>
+                    @if (user.Birthday.HasValue)
+                    {
+                        DateTime birthday = user.Birthday.Value;
+                        DateTime now = DateTime.Today;
+
+                        int age = now.Year - birthday.Year;
+                        if (now < birthday.AddYears(age))
+                        {
+                            age--;
+                        }
+                        <h4>@age years</h4>
+                    }
+                    @if (user.City != null && user.Country != null)
+                    {
+                        <h4>@user.City, @user.Country</h4>
+                    }
+                </div>
+                <div class="follow">
+                    @if (isSubscriber)
+                    {
+                        <a id="follow">Unsubscribe</a>
+                    }
+                    else
+                    {
+                        <a id="follow">Subscribe</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="posts">
+        <div class="container">
+            <div class="title">Posts</div>
+            <div class="posts">
+                <!--render posts from cache-->
+                @{Html.RenderAction("Posts", "Home", new { skip = 0, take = 10, only = true, userId = user.Id, fromCache = true });}
+            </div>
+        </div>
+    </section>
+</body>
+</html>

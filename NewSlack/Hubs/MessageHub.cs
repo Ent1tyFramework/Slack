@@ -4,12 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using Newtonsoft.Json;
 using Slack.Data.Entities;
 using Slack.Data.Interfaces;
+using Slack.Identity.Contexts;
 using Slack.Identity.Entities;
+using Slack.Identity.Managers;
 using Slack.Services.Interfaces;
 
 namespace Slack.Hubs
@@ -21,10 +25,10 @@ namespace Slack.Hubs
         private readonly IServicesManager servicesManager;
         private readonly IRepositoryManager repositoryManager;
 
-        public MessageHub(UserManager<ApplicationUser> userManager, IServicesManager servicesManager,
+        public MessageHub(ApplicationUserManager userManager, IServicesManager servicesManager,
             IRepositoryManager repositoryManager)
         {
-            this.userManager = userManager;
+            this.userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             this.servicesManager = servicesManager;
             this.repositoryManager = repositoryManager;
         }

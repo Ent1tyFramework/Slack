@@ -1,0 +1,55 @@
+﻿@using Slack.Identity.Entities
+@model Tuple<List<ApplicationUser>, Dictionary<string, bool>>
+@{
+    var users = Model.Item1;
+    var isSubs = Model.Item2;
+}
+
+<html>
+<head>
+    <script>
+        //subhub
+        $('#follow').click(function () {
+            subscribe($('#userId').val());
+        });
+    </script>
+</head>
+<body>
+    @if (users.Count > 0)
+    {
+        foreach (var user in users)
+        {
+            @Html.Hidden("userId", user.Id)
+            <div class="user clearfix">
+                <div class="user_img left">
+                    <img src="@user.ImagePath" alt="">
+                </div>
+                <div class="user_data left">
+                    <a href="/user/@user.UserName">@user.FirstName @user.LastName</a>
+                    @if (user.City != null && user.Country != null)
+                    {
+                        <h4>@user.City, @user.Country</h4>
+                    }
+                </div>
+                <div class="follow right">
+                    @if (!(user.Id == ViewBag.currentId))
+                    {
+                        if (isSubs.Count > 0 && isSubs.FirstOrDefault(s => s.Key == user.Id).Value)
+                        {
+                            <a id="follow">Unsubscribe</a>
+                        }
+                        else
+                        {
+                            <a id="follow">Subscribe</a>
+                        }
+                    }
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+          <h2 class="error">Your search returned no matches.</h2>
+    }
+</body>
+</html>

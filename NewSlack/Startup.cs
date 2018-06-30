@@ -38,15 +38,10 @@ namespace Slack
                 LoginPath = new PathString("/login")
             });
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions() {
-            //    ClientId = "71635730032-5clu1be6p7lh3vim6er56jkc3oip244h.apps.googleusercontent.com",
-            //    ClientSecret = "fjOimgzKrDOGk4cte99QUu-T"
-            //});
-
             //настройка SignalR
             var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var repositoryManager = new RepositoryManager(new DataDbContext());
-            var serviceManager = new ServicesManager(userManager, repositoryManager);
+            var serviceManager = new ServicesManager(repositoryManager);
 
             GlobalHost.DependencyResolver.Register(typeof(PostHub),
                 () => new PostHub(userManager, serviceManager, repositoryManager));

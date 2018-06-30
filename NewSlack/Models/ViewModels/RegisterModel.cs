@@ -21,20 +21,14 @@ namespace Slack.Models.ViewModels
         [StringLength(30, MinimumLength = 8, ErrorMessage = "Password length must be at least 8 and not more 30 chars.")]
         public string Password { get; set; }
 
-        [Display(Name = "Confirm Password")]
+        [Display(Name = "Firstname")]
         [Required(ErrorMessage = "Required field.")]
-        [Compare("Password", ErrorMessage = "Passwords don't match.")]
-        [DataType(DataType.Password, ErrorMessage = "Insecure password.")]
-        public string ConfirmPassword { get; set; }
-
-        [Display(Name = "First name")]
-        [Required(ErrorMessage = "Required field.")]
-        [OnlyLetters(ErrorMessage = "Enter your name.")]
+        [OnlyLetters(ErrorMessage = "Enter your firstname.")]
         public string FirstName { get; set; }
 
-        [Display(Name = "Last name")]
+        [Display(Name = "Lastname")]
         [Required(ErrorMessage = "Required field.")]
-        [OnlyLetters(ErrorMessage = "Enter your last name.")]
+        [OnlyLetters(ErrorMessage = "Enter your lastname.")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Required field.")]

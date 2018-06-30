@@ -1,34 +1,31 @@
-﻿using Slack.Data.Interfaces;
+﻿using System;
+using System.Web;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin;
+using Slack.Data.Interfaces;
 using Slack.Identity.Managers;
 using Slack.Services.Interfaces;
 using Slack.Services.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Slack.Services.Managers
 {
     public class ServicesManager : IServicesManager
     {
-        private readonly ApplicationUserManager userManager;
         private readonly IRepositoryManager repositoryManager;
 
-        public ServicesManager(ApplicationUserManager userManager, IRepositoryManager repositoryManager)
+        public ServicesManager(IRepositoryManager repositoryManager)
         {
-            this.userManager = userManager;
             this.repositoryManager = repositoryManager;
         }
 
-        public IPostService PostService => new PostService(userManager, repositoryManager);
+        public IPostService PostService => new PostService(repositoryManager);
 
-        public ISubService SubService => new SubService(userManager, repositoryManager);
+        public ISubService SubService => new SubService(repositoryManager);
 
-        public IUserService UserService => new UserService(userManager);
+        public IUserService UserService => new UserService();
 
-        public IDialogService DialogService  => new DialogService(userManager,repositoryManager);
+        public IDialogService DialogService  => new DialogService(repositoryManager);
 
-        public IMessageService MessageService => new MessageService(userManager, repositoryManager);
+        public IMessageService MessageService => new MessageService(repositoryManager);
     }
 }
