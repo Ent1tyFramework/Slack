@@ -2,14 +2,13 @@
 @model Tuple<List<ApplicationUser>, Dictionary<string, bool>>
 @{
     var users = Model.Item1;
-    var isSubs = Model.Item2;
+    var subs = Model.Item2;
 }
 
 <html>
 <head>
     <script>
-        //subhub
-        $('#follow').click(function () {
+        $('.follow button').click(function () {
             subscribe($('#userId').val());
         });
     </script>
@@ -20,36 +19,46 @@
         foreach (var user in users)
         {
             @Html.Hidden("userId", user.Id)
-            <div class="user clearfix">
-                <div class="user_img left">
-                    <img src="@user.ImagePath" alt="">
+            <div class="user row">
+                <div class="user_img">
+                    <img class="rounded-circle" src="@user.ImagePath" />
                 </div>
-                <div class="user_data left">
-                    <a href="/user/@user.UserName">@user.FirstName @user.LastName</a>
-                    @if (user.City != null && user.Country != null)
-                    {
-                        <h4>@user.City, @user.Country</h4>
-                    }
-                </div>
-                <div class="follow right">
-                    @if (!(user.Id == ViewBag.currentId))
-                    {
-                        if (isSubs.Count > 0 && isSubs.FirstOrDefault(s => s.Key == user.Id).Value)
+                <div class="content col-5">
+                    <div class="user_name">
+                        <a href="/user/@user.UserName" class="text-light">@user.FirstName @user.LastName</a>
+                    </div>
+                    <div class="user_location text-light">
+                        @if (user.City != null && user.Country != null)
                         {
-                            <a id="follow">Unsubscribe</a>
+                            <p class="small">@user.City, @user.Country</p>
                         }
-                        else
-                        {
-                            <a id="follow">Subscribe</a>
-                        }
-                    }
+                    </div>
                 </div>
+                @{
+                    var sub = subs.FirstOrDefault(s => s.Key == user.Id);
+                    bool isSub = sub.Value;
+                }
+                @if (isSub)
+                {
+                    <div class="follow col-3 ml-auto">
+                        <button class="btn btn-outline-light d-block mx-auto"><i class="fas fa-users"></i> Following</button>
+                    </div>
+                }
+                else
+                {
+                    if (sub.Key != (string)ViewBag.currentId)
+                    {
+                        <div class="follow col-3 ml-auto">
+                            <button class="btn btn-outline-light d-block mx-auto"><i class="fas fa-users"></i> Follow</button>
+                        </div>
+                    }
+                }
             </div>
         }
     }
     else
     {
-          <h2 class="error">Your search returned no matches.</h2>
+        <h2 class="error text-center">Your search returned no matches.</h2>
     }
 </body>
 </html>

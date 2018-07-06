@@ -14,6 +14,7 @@
 <html>
 <head>
     @section links{
+        <link rel="stylesheet" href="~/Content/Styles/Home/Dialogs/dialogs.css" />
         <link rel="stylesheet" href="~/Content/Styles/Home/Dialog/dialog.css" />
     }
     @section scripts{
@@ -22,58 +23,54 @@
     }
 </head>
 <body>
-    <section id="dialog">
-        <div class="container">
-            <div class="dialog_header">
-                <div class="back_to_dialogs left">
-                    <img class="left" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB9SURBVEhL7c+9CYAwGIThbOESgp2FvYWlO2hn4xTOk5/BBBtLTzjBXr4Pi3sghFzzkiBf5ZwXnIZPHwhuKaUdd83J3ivacrKnqClFTSlqCsEVwcM1ekN4wDlxJk5+8NtRcU5+FFfc1S/iuGdOfp54jLHn5KeU0iFc8SkUwgUtrsfc94yoWQAAAABJRU5ErkJggg=="
-                         alt="">
-                    <h4 class="right">Back to dialogs</h4>
-                </div>
-                <div class="dialog_name">
-                    <a href="/user/@interlocutor.User.UserName">@interlocutor.User.FirstName @interlocutor.User.LastName</a>
-                </div>
-                <div class="dialog_img right">
-                    <img src="@interlocutor.User.ImagePath" alt="">
-                </div>
+    <div class="dialog">
+        <div class="dialog_header row">
+            <div class="back col-2 col-sm-4 col-md-5">
+                <a href="/dialogs">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB0SURBVEhL7c0hCoBAFIThvYWXEGwGu8HoHbRZPIXXFSymXUeYsF3eYJgPHstO+ZN9lXPecB2/GggepZQTb8spXhXtOcVzNJSjoRwNhdiOu6TRF4IT7sYtnHQQnR3npOO441J/ia+cdKr4yEkH0QHX8GuU0gOoDAtKCFVgrgAAAABJRU5ErkJggg==">
+                    <span class="text-light d-none d-sm-inline">Back to dialogs</span>
+                </a>
             </div>
-            <div class="dialog_content">
-                @if (messages.Count > 0 && users.Count > 0)
-                {
-                    <div class="messages">
-                        @foreach (var message in messages)
-                        {
-                            var userfor = users
-                            .FirstOrDefault(i => i.Id == message.Id);
-                            var user = userfor.User;
+            <div class="user_img">
+                <img src="@interlocutor.User.ImagePath" class="rounded-circle" />
+                <a class="user_name text-light font-weight-bold" href="/user/@interlocutor.User.UserName">@interlocutor.User.FirstName @interlocutor.User.LastName</a>
+            </div>
+        </div>
+        <div class="dialog_content">
+            @if (messages.Count > 0 && users.Count > 0)
+            {
+                <div class="messages">
+                    @foreach (var message in messages)
+                    {
+                        var userfor = users.FirstOrDefault(i => i.Id == message.Id);
+                        var user = userfor.User;
 
-                            <div class="message">
-                                <div class="message_header">
-                                    <img src="@user.ImagePath" alt="">
-                                    <a href="/user/@user.UserName">@user.FirstName @user.LastName</a>
+                        <div class="message row">
+                            <div class="user_img">
+                                <img src="@user.ImagePath" class="rounded-circle" />
+                            </div>
+                            <div class="content col-10 text-light">
+                                <div>
+                                    <a class="font-weight-bold text-light" href="/user/@user.UserName">@user.FirstName @user.LastName</a>
                                 </div>
-                                <div class="message_content">
+                                <div>
                                     <p>@message.Content</p>
                                 </div>
                             </div>
-                        }
-                    </div>
-                }
-                else
-                {
-                    <h2 class="title">Start a dialog first!</h2>
-                }
-            </div>
-            <div class="dialog_footer clearfix">
-                <div class="type_message left">
-                    <textarea spellcheck="false" placeholder="Enter message here"></textarea>
+                        </div>
+                    }
                 </div>
-                <div class="send_message right" hidden>
-                    <input type="submit" value="Send">
-                </div>
+            }
+            else
+            {
+                <h2 class="title text-center text-light mt-5">Start a dialog first!</h2>
+            }
+        </div>
+        <div class="enter_message">
+            <div class="form-group">
+                <input id="input_msg" type="text" class="form-control" spellcheck="false" rows="5" placeholder="Enter message here" />
             </div>
         </div>
-    </section>
+    </div>
 </body>
 </html>
-

@@ -7,9 +7,12 @@
 
     <link rel="stylesheet" href="~/Content/Styles/Common/reset.css">
     <link rel="stylesheet" href="~/Content/Styles/Layout/fonts.css">
-    <link rel="stylesheet" href="~/Content/Styles/Layout/main.css">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/FontAwesome/css/all.css">
+    <link rel="stylesheet" href="~/Content/Styles/Layout/layout.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <style>
-        #menu .hidden_menu{
+        #menu .hidden_menu {
             transition: visibility 0s, opacity 0.5s linear;
         }
     </style>
@@ -18,6 +21,7 @@
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/jquery.signalR-2.2.3.min.js"></script>
     <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
 
     <script src="~/Scripts/Layout/layout.js"></script>
     <script>
@@ -43,55 +47,43 @@
     @RenderSection("scripts", false)
 </head>
 <body>
-    <header>
-        <h2>@ViewBag.Page</h2>
-        <img id="user_img" />
-    </header>
-    <section id="content">
-        @RenderBody()
-    </section>
-    <section id="menu">
-        <div class="first_menu">
-        </div>
-        <div class="hidden_menu" id="hidden_menu" hidden>
-            <div class="title">
-                <a href="/home">Slack</a>
-            </div>
-            <nav>
-                <ul>
-                    <li>
-                        <a class="nav_profile" href="#"></a>
-                        <a href="#">My profile</a>
-                    </li>
-                    <li>
-                        <a class="nav_mail" href="/dialogs"></a>
-                        <a href="/dialogs">Messages</a>
-                    </li>
-                    <li>
-                        <a class="nav_news" href="/home"></a>
-                        <a href="/home">News</a>
-                    </li>
-                    <li>
-                        <a class="nav_search" href="/search"></a>
-                        <a href="/search">Search</a>
-                    </li>
-                    <li>
-                        <a class="nav_settings" href="/settings"></a>
-                        <a href="/settings">Settings</a>
-                    </li>
-                    <li>
-                        <a class="nav_signout" href="/signout"></a>
-                        <a href="/signout">Sign out</a>
-                    </li>
-                </ul>
+    <div class="container-fluid">
+        <div class="container head_container">
+            <nav class="navbar navbar-expand-md navbar-dark">
+
+                <a href="/home" class="navbar-brand text-light">Skavee</a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerNavbar">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABbSURBVEhLYxgFo4Bm4P///6vojf/9+9cEsriD3hhocQbU36NgFIwCKgBgnto9ALgfZHH5AOBoqL9HwSgYBVQAwIr5DL0xMB/PAVmcRm8MtNgP6u9RMAqoDRgYAE5Og/9Nv+GqAAAAAElFTkSuQmCC">
+                </button>
+
+                <div class="collapse navbar-collapse" id="headerNavbar">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-light text-uppercase" href="/myprofile"><i class="fas fa-home"></i> my profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light text-uppercase" href="/dialogs"><i class="fas fa-comment"></i> messages</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light text-uppercase" href="/news"><i class="fas fa-newspaper"></i> news</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light text-uppercase" href="/search"><i class="fas fa-search"></i> search</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light text-uppercase" href="/settings"><i class="fas fa-cog"></i> settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light text-uppercase" href="/signout"><i class="fas fa-sign-out-alt"></i> sign out</a>
+                        </li>
+                    </ul>
+                </div>
             </nav>
         </div>
-    </section>
-    <footer>
-        <h3>
-            Created by
-            <a href="/user/babaev">Islam Babaev</a>
-        </h3>
-    </footer>
+    </div>
+    <div class="container body_container">
+        @RenderBody()
+    </div>
 </body>
 </html>

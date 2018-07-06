@@ -1,62 +1,78 @@
 ﻿.posts {
-    margin-top: 30px;
+    padding-top: 50px;
+    overflow: hidden;
+    position: relative;
+    min-width: 150px;
 }
 
 .post {
-    background: #fff;
-    border: 1px solid #e3e4e8;
-    border-radius: 3px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
-.post_header {
-    padding: 10px;
-    border-bottom: 1px solid #e3e4e8;
-}
-
-    .post_header > img {
-        width: 24px;
-        padding: 10px;
-        margin-right: 40px;
-        margin-top: 10px;
-        cursor: pointer;
+    .post:last-child {
+        margin-bottom: 0;
     }
 
-.post .about_user img {
+.user_img {
     width: 50px;
     height: 50px;
-    border-radius: 100px;
+    margin-left: 5px;
 }
 
-.post .about_user a {
-    text-decoration: none;
-    color: #000;
-    display: inline-block;
-    overflow: auto;
-    margin-bottom: 17px;
+.user_name {
+    font-family: 'Tajawal Regular', sans-serif;
+    font-size: 18px;
     margin-left: 10px;
-    font-family: 'Titillium Web SemiBold', sans-serif;
-    font-weight: 400;
 }
 
-    .post .about_user a:hover {
+    .user_name:hover {
         text-decoration: underline;
     }
 
-.post_content {
-    position: relative;
+.post_body {
+    margin-top: 10px;
 }
 
-    .post_content .img img {
-        max-width: 798px;
-        max-height: 1000px;
+.no_posts {
+    margin-bottom: 50px;
+    height: 250px;
+}
+
+    .no_posts h2 {
+        font-family: 'Titillium Web Regular';
+        font-size: 25px;
+        margin-top: 10px;
     }
 
-    .post_content .like {
-        width: inherit;
-        height: inherit;
-        cursor: pointer;
-        position: absolute;
-        top: 150px;
-        text-align: center;
+@media screen and (max-width:570px) {
+    .user_img {
+        width: 40px;
+        height: 40px;
     }
+
+    .user_name {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .no_posts h2 {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .no_posts h2 {
+        font-size: 23px;
+    }
+
+    .posts {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .no_posts h2 {
+        font-size: 22px;
+    }
+}

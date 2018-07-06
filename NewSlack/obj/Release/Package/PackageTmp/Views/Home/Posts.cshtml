@@ -7,31 +7,34 @@
 }
 <html>
 <head>
-        <link rel="stylesheet" href="~/Content/Styles/Home/Posts/posts.css"/>
+
 </head>
 <body>
-    @if (posts != null && users != null)
+    @if (posts.Count() > 0 && users.Count() > 0)
     {
         foreach (var post in posts)
         {
             var user = users.FirstOrDefault(u => u.Id == post.UserId);
+
             <div class="post">
-                <div class="post_header clearfix">
-                    <div class="about_user left">
-                        <img src="@user.ImagePath" alt="">
-                        <a href="/user/@user.UserName">@user.FirstName @user.LastName</a>
-                    </div>
+                <div class="post_header">
+                    <img class="user_img rounded-circle" src="@user.ImagePath" />
+                    <a href="/user/@user.UserName" class="user_name text-dark font-weight-light">@user.FirstName @user.LastName</a>
                 </div>
-                <div class="post_content">
-                    <div class="img">
-                        <img src="/Content/Users/Images/@user.Id/@post.Content" alt="">
-                    </div>
-                    <div class="like" hidden>
-                        <img src="/Content/Images/white_like.png" alt="">
-                    </div>
+                <div class="post_body">
+                    <img class="post_image img-fluid" src="~/Content/Users/Images/@user.Id/@post.Content" />
                 </div>
             </div>
         }
+    }
+    else
+    {
+        <div class="no_posts">
+            <div class="text-center">
+                <img src="data:image/png;base64,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">
+                <h2 class="text-uppercase">No posts yet</h2>
+            </div>
+        </div>
     }
 </body>
 </html>

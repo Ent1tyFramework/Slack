@@ -1,21 +1,17 @@
 ﻿@model Slack.Models.ViewModels.LoginModel
-@{
-}
 <html>
 <head>
-    <link rel="stylesheet" href="~/Content/Styles/Home/Posts/posts.css">
-    <link rel="stylesheet" href="~/Content/Styles/Home/News/news.css">
+    @section links{
+        <link rel="stylesheet" href="~/Content/Styles/Home/Posts/posts.css">
+        <link rel="stylesheet" href="~/Content/Styles/Home/News/news.css">
+    }
 
-    <script src="~/Scripts/Hubs/posthub.js"></script>
-    <script src="~/Scripts/Home/Posts/posts_load.js"></script>
-    <script src="~/Scripts/Home/Posts/post_upload.js"></script>
-    <script>
-        $(function () {
-            $('div.posts').empty();
-            only = false;
-            data_loading(true);
-        });
-    </script>
+    @section scripts{
+        <script src="~/Scripts/Hubs/posthub.js"></script>
+        <script src="~/Scripts/Home/Posts/posts_load.js"></script>
+        <script src="~/Scripts/Home/Posts/post_upload.js"></script>
+        <script src="~/Scripts/Home/News/news.js"></script>
+    }
 </head>
 <body class="bg-light">
     <div class="body_container_header row">

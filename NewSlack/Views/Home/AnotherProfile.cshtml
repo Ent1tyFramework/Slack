@@ -6,28 +6,18 @@
 }
 <html>
 <head>
-    <link rel="stylesheet" href="~/Content/Styles/Home/Posts/posts.css">
-    <link rel="stylesheet" href="~/Content/Styles/Home/Profile/profile.css">
+    @section links{
+        <link rel="stylesheet" href="~/Content/Styles/Home/Posts/posts.css">
+        <link rel="stylesheet" href="~/Content/Styles/Home/Profile/profile.css">
+    }
 
-    <script src="~/Scripts/Hubs/subhub.js"></script>
-    <script src="~/Scripts/Hubs/posthub.js"></script>
-    <script src="~/Scripts/Home/Posts/posts_load.js"></script>
-    <script src="~/Scripts/Home/Posts/post_upload.js"></script>
-    <script>
-        $(function () {
-               $('.follow button').click(function () {
-                subscribe('@user.Id');
-               });
-        });
-        function afterSubscribe() {
-            $('.follow button').removeClass('btn-outline-dark');
-            $('.follow button').addClass('following');
-        }
-        function afterUnsubscribe() {
-            $('.follow button').removeClass('following');
-            $('.follow button').addClass('btn-outline-dark');
-        }
-    </script>
+    @section scripts{
+        <script src="~/Scripts/Hubs/subhub.js"></script>
+        <script src="~/Scripts/Hubs/posthub.js"></script>
+        <script src="~/Scripts/Home/Posts/posts_load.js"></script>
+        <script src="~/Scripts/Home/Posts/post_upload.js"></script>
+        <script src="~/Scripts/Home/AnotherProfile/anothprofile.js"></script>
+    }
 </head>
 <body class="bg-light">
     <div class="user_info">
@@ -75,7 +65,7 @@
         </div>
     </div>
     <div class="posts">
-        @{Html.RenderAction("Posts", new { skip = 0, take = 10, only = true,userId = user.Id, fromCache = true });}
+        @{Html.RenderAction("Posts", new { skip = 0, take = 10, only = true, userId = user.Id, fromCache = true });}
     </div>
 </body>
 </html>

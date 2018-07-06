@@ -1,16 +1,11 @@
 ﻿$(function () {
-    //On click change color 
-    $('.auth .group select option').click(function () {
-        $('.group select').css('color', '#000');
+    $('#goNext').click(function () {
+        $('.step1').hide();
+        $('.step2').show();
+        $(this).text('Continue');
     });
-
-    //Birthday
-    $('#dateClone').click(function () {
-        $('#userBirthday').click();
-    });
-
-    $('#userBirthday').change(function () {
-        $('#dateClone').val($(this).val()); 
-        $('#dateClone').css('color','#000'); 
+    $('#goBack').click(function () {
+        $('.step2').hide();
+        $('.step1').show();
     });
 });

@@ -1,11 +1,4 @@
-﻿@media screen and (max-width: 576px) {
-    .form-horizontal {
-        transform: translate(-50%,-50%);
-        max-height: 500px;
-    }
-}
-
-body {
+﻿body {
     background-color: #563D7C;
 }
 
@@ -49,4 +42,19 @@ input[type=submit] {
 
 input{
     border-color: white;
+}
+@media screen and (max-width: 576px) {
+    .form-horizontal {
+        transform: translate(-50%,-50%);
+        max-height: 500px;
+    }
+}
+
+@media screen and (max-height: 480px){
+    .form-horizontal {
+        position: inherit;
+        top: inherit;
+        left: inherit;
+        transform: inherit;
+    }
 }

@@ -1,86 +1,92 @@
 ﻿@using Slack.Models.ViewModels
 @model EditModel
-@{
-    ViewBag.Title = "Slack - Settings";
-    ViewBag.Page = "Settings";
-}
 <html>
 <head>
     @section links{
-        <link rel="stylesheet" href="~/Content/Styles/Home/Settings/settings.css" />
+        <link rel="stylesheet" href="~/Content/Styles/Home/Settings/settings.css">
     }
     @section scripts{
         <script src="~/Scripts/Home/Settings/settings.js"></script>
     }
 </head>
 <body>
-    <section id="settings">
-        <div class="container">
-            <form action="/settings" method="post">
-                @Html.AntiForgeryToken()
-                <div class="user_img">
-                    <img src="@Model.Image" alt="">
-                    @Html.HiddenFor(e => e.Image, new { id = "img_name" })
-                    <input id="upload_img" name="upload_img" type="file" accept="image/jpg, image/png" hidden>
-                    <a id="change_photo">Change photo</a>
-                </div>
-                <div class="user_data">
-                    @Html.ValidationMessage("", "", new { })
-                    <div class="group">
-                        <div class="elements clearfix">
-                            @Html.LabelFor(l => l.FirstName, new { @class = "left" })
-                            @Html.EditorFor(e => e.FirstName, new { htmlAttributes = new { @class = "right", placeholder = "First name" } })
-                        </div>
-                        @Html.ValidationMessageFor(model => model.FirstName, "", new { })
+    <div class="user_info">
+        <h4 class="title text-center text-uppercase text-gold">#settings</h4>
+        <hr class="bg-gold" />
+        <form action="/settings" method="post" enctype="multipart/form-data">
+            <div class="user_img">
+                <img class="rounded-circle d-block mx-auto" src="@Model.Image" />
+                @Html.HiddenFor(model => model.Image)
+                <input type="file" id="upload_image" name="image" accept="image/*" hidden/>
+            </div>
+            <div class="user_data row">
+                <div class="form-horizontal d-block mx-auto col-11">
+                    @Html.AntiForgeryToken()
+                    <div class="form-group mx-auto">
+                        @Html.EditorFor(model => model.FirstName, new
+                        {
+                            htmlAttributes = new
+                            {
+                                @class = "form-control focus-border-gold",
+                                placeholder = "Firstname"
+                            }
+                        })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
                     </div>
-                    <div class="group">
-                        <div class="elements clearfix">
-                            @Html.LabelFor(l => l.LastName, new { @class = "left" })
-                            @Html.EditorFor(e => e.LastName, new { htmlAttributes = new { @class = "right", placeholder = "Last name" } })
-                        </div>
-                        @Html.ValidationMessageFor(model => model.LastName, "", new { })
+                    <div class="form-group mx-auto">
+                        @Html.EditorFor(model => model.LastName, new
+                        {
+                            htmlAttributes = new
+                            {
+                                @class = "form-control focus-border-gold",
+                                placeholder = "LastName"
+                            }
+                        })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
                     </div>
-                    <div class="group">
-                        <div class="elements clearfix">
-                            @Html.LabelFor(l => l.Country, new { @class = "left" })
-                            @Html.EditorFor(e => e.Country, new { htmlAttributes = new { @class = "right", placeholder = "Country" } })
-                        </div>
-                        @Html.ValidationMessageFor(model => model.Country, "", new { })
+                    <div class="form-group mx-auto">
+                        @Html.EditorFor(model => model.Country, new
+                        {
+                            htmlAttributes = new
+                            {
+                                @class = "form-control focus-border-gold",
+                                placeholder = "Country"
+                            }
+                        })
+                        @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
                     </div>
-                    <div class="group">
-                        <div class="elements clearfix">
-                            @Html.LabelFor(l => l.City, new { @class = "left" })
-                            @Html.EditorFor(e => e.City, new { htmlAttributes = new { @class = "right", placeholder = "City" } })
-                        </div>
-                        @Html.ValidationMessageFor(model => model.City, "", new { })
+                    <div class="form-group mx-auto">
+                        @Html.EditorFor(model => model.City, new
+                        {
+                            htmlAttributes = new
+                            {
+                                @class = "form-control focus-border-gold",
+                                placeholder = "City"
+                            }
+                        })
+                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
                     </div>
                     @{
                         DateTime min = new DateTime(DateTime.Now.Year - 100, 10, 10);
                         DateTime max = new DateTime(DateTime.Now.Year - 10, 12, 31);
                     }
-                    <div class="group">
-                        <div class="elements clearfix">
-                            @Html.LabelFor(l => l.Birthday, new { @class = "left" })
-                            @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @min = min.ToString("yyyy-MM-dd"), @max = max.ToString("yyyy-MM-dd"), id = "userBirthday" } })
-                            @if (Model.Birthday != null)
-                            {
-                                <input type="button" id="dateClone" class="right" value="@Model.Birthday.Value.ToString("yyyy-MM-dd")" style="color:#000;">
-                            }
-                            else
-                            {
-                                <input type="button" id="dateClone" size="10" class="right" value="Birthday">
-                            }
-                        </div>
-                        @Html.ValidationMessageFor(model => model.Birthday, "", new { })
+                    <div class="form-group mx-auto">
+                        @if (Model.Birthday != null)
+                        {
+                            <input type="date" name="Birthday" class="form-control focus-border-gold" value="@Model.Birthday.Value.ToString("yyyy-MM-dd")" min=@min.ToString("yyyy-MM-dd") , max=@max.ToString("yyyy-MM-dd")>
+                        }
+                        else
+                        {
+                            <input type="date" name="Birthday" class="form-control focus-border-gold" min=@min.ToString("yyyy-MM-dd") , max=@max.ToString("yyyy-MM-dd")>
+                        }
+                        @Html.ValidationMessageFor(model => model.Birthday, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group mx-auto">
+                        <button class="btn focus-border-gold d-block mx-auto">Save</button>
                     </div>
                 </div>
-                <div class="save_changes">
-                    <input type="submit" value="Save" hidden />
-                    <a id="form_submit">Save</a>
-                </div>
-            </form>
-        </div>
-    </section>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
-

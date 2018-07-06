@@ -1,29 +1,31 @@
-﻿#body {
-    min-height: 250px;
+﻿body {
+    background: #094585;
 }
-.content{
-    text-align:center;
-}
-#title {
-    font-size: 25px;
-}
-.content h4{
-   font-weight: 400;
-}
-.content a {
-    text-decoration: none;
-    cursor: pointer;
-    color: #021b36;
 
-    display: block;
-    margin: 0 auto;
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-55%);
+}
+
+    .content > h4:first-child {
+        font-family: 'Titillium Web Bold', sans-serif;
+    }
+
+.info {
+    font-family: 'Tajawal Regular', sans-serif;
+}
+
+    .info > h4 {
+        font-size: 16px;
+    }
+
+.refresh {
     margin-top: 40px;
-    width: 400px;
-    padding: 15px 0;
-    border: 0;
+}
+#refresh_page {
     font-family: 'Exo-Medium', sans-serif;
-    font-size: 17px;
+    cursor: pointer;
 }
-.content a:hover{
-    opacity: .7;
-}
+

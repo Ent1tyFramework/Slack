@@ -84,8 +84,8 @@ namespace Slack.Controllers
                 string token = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                 string callBack = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, token, returnUrl }, Request.Url.Scheme);
 
-                await UserManager.SendEmailAsync(user.Id, "Подтверждение аккаунта", $"<h3>Для завершения регистрации," +
-                   $" пожалуйста, перейдите по <a href=\"{callBack}\">этой ссылке</a>.</h3> ");
+                await UserManager.SendEmailAsync(user.Id, "Account confirmation", $"<h3>To complete registration, " +
+                   $" please, <a href=\"{callBack}\">follow the link/a>.</h3> ");
 
                 string message = $"Registration message sent to {user.Email}";
                 return View("SendConfirmationLink", model: message);
@@ -106,8 +106,8 @@ namespace Slack.Controllers
                 string token = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 string callBack = Url.Action("ResetPassword", "Account", new { userId = user.Id, token, returnUrl }, Request.Url.Scheme);
 
-                await UserManager.SendEmailAsync(user.Id, "Восстановление пароля", $"<h3>Для создания нового " +
-                     $"пароля, пожалуйста, перейдите по <a href=\"{callBack}\">этой ссылке</a>.</h3>");
+                await UserManager.SendEmailAsync(user.Id, "Password recovery", $"<h3>To create a new password, " +
+                     $"please, <a href=\"{callBack}\">follow the link</a>.</h3>");
 
                 string message = $"Password recovery message sent to {user.Email}";
                 return View("SendConfirmationLink", model: message);

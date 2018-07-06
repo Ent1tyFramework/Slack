@@ -1,29 +1,21 @@
 ﻿@model string
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
     ViewBag.Title = "Slack - Email confirmation";
 }
 <html>
 <head>
-    <link rel="stylesheet" href="~/Content/Styles/Common/reset.css" />
-    <link rel="stylesheet" href="~/Content/Styles/Layout/fonts.css">
-    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/Content/Styles/Account/SendConfirmationLink/sendConfirmLink.css" />
-
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script>
-        $(function () {
-            setTimeout(function () {
-                window.location.href = "/news";
-            }, 3000);
-        });
-    </script>
+    @section links{
+        <link rel="stylesheet" href="~/Content/Styles/Account/SendConfirmationLink/sendConfirmLink.css" />
+    }
+    @section scripts{
+        <script src="~/Scripts/Account/confirmation.js"></script>
+    }
 </head>
 <body>
     <div class="container">
         <div class="content text-light text-center col-11">
-            <h4 class="text-center text-uppercase">slack</h4>
+            <h4 class="text-center text-uppercase">skavee</h4>
             <hr class="bg-primary" />
             <div class="info">
                 <h3 id="title">@Model</h3>

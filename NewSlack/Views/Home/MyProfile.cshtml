@@ -3,24 +3,17 @@
 
 <html>
 <head>
-    <link rel="stylesheet" href="~/Content/Styles/Home/Posts/posts.css">
-    <link rel="stylesheet" href="~/Content/Styles/Home/Profile/profile.css">
+    @section links{
+        <link rel="stylesheet" href="~/Content/Styles/Home/Posts/posts.css">
+        <link rel="stylesheet" href="~/Content/Styles/Home/Profile/profile.css">
+    }
 
-
-    <script src="~/Scripts/Hubs/posthub.js"></script>
-    <script src="~/Scripts/Home/Posts/posts_load.js"></script>
-    <script src="~/Scripts/Home/Posts/post_upload.js"></script>
-    <script>
-        $(function () {
-            $('div.posts').empty();
-            only = false;
-            data_loading(true);
-
-            if ($('.no_post').length > 0) {
-                $('.posts').css('border-top', '1px solid #000');
-            }
-        });
-    </script>
+    @section scripts{
+        <script src="~/Scripts/Hubs/posthub.js"></script>
+        <script src="~/Scripts/Home/Posts/posts_load.js"></script>
+        <script src="~/Scripts/Home/Posts/post_upload.js"></script>
+        <script src="~/Scripts/Home/Profile/profile.js"></script>
+    }
 </head>
 <body class="bg-light">
     <div class="user_info">
@@ -57,7 +50,7 @@
         </div>
     </div>
     <div class="posts">
-        @{Html.RenderAction("Posts", new { skip = 0, take = 10, only = true, userId = Model.Id, fromCache = true});}
+        @{Html.RenderAction("Posts", new { skip = 0, take = 10, only = true, userId = Model.Id, fromCache = true });}
     </div>
 </body>
 </html>

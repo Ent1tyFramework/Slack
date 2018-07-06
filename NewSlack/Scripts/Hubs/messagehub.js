@@ -39,12 +39,12 @@ $(function () {
         var lastIndex = document.URL.lastIndexOf('/');
         var urlDialogId = document.URL.substring(lastIndex + 1);
 
-        if (urlDialogId == dialogId) {
+        if (urlDialogId === dialogId) {
             $('.messages').append(code);
         }
 
         //scroll to down
-        var dialog_content = $('.dialog_content');
+        dialog_content = $('.dialog_content');
         dialog_content.scrollTop(dialog_content.prop('scrollHeight'));
     }
 

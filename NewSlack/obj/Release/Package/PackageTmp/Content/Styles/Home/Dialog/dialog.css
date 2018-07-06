@@ -1,165 +1,151 @@
-﻿.left {
-    float: left;
+﻿.dialog {
+    padding: 0;
 }
 
-.right {
-    float: right;
-}
-
-.clearfix:after {
-    content: '';
-    display: table;
-    width: 100%;
-    clear: both;
-}
-
-body {
-    background: #edeef0;
-}
-
-#dialog {
-    margin-top: 50px;
-}
-
-.container {
-    width: 800px;
-    margin: 0 auto;
-    background: #fff;
-}
+    .dialog:hover {
+        background-color: inherit;
+        cursor: default;
+    }
 
 .dialog_header {
-    height: 60px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid #ededed;
+    background-color: #07325f;
+    padding: 5px;
 }
 
-.back_to_dialogs {
-    width: 150px;
-    margin-top: 15px;
+.title {
+    font-family: 'Tajawal Regular', sans-serif;
+}
+
+.back {
     cursor: pointer;
-}
-
-    .back_to_dialogs h4 {
-        font-family: 'Tajawal Regular',sans-serif;
-        font-weight: 300;
-        font-size: 18px;
-        color: #b3b3b3;
-        margin-top: 2px;
-    }
-
-.dialog_name a {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    padding-top: 11px;
+    padding-left: 10px;
+    padding-right: 0;
     font-family: 'Exo-Medium', sans-serif;
-    font-weight: 500;
-    font-size: 20px;
-    text-decoration: none;
-    color: #4a76a8;
 }
 
-    .dialog_name a:hover {
-        color: #5a8fcc;
+    .back a {
+        text-decoration: none;
     }
 
-.dialog_img img {
+    .back:hover, .content > .user_img a:hover {
+        opacity: .7;
+    }
+
+.user_name {
+    font-family: 'Titillium Web SemiBold', sans-serif;
+    font-size: 25px;
+    margin-left: 10px;
+    text-decoration: none !important;
+}
+
+.user_img img {
+    width: 55px;
+    height: 55px;
+}
+
+.messages {
+    margin-top: 25px;
+    margin-bottom: 80px;
+}
+
+.message {
+    margin-bottom: 10px;
+}
+.message > .user_img img {
     width: 50px;
     height: 50px;
-    border-radius: 100px;
-    margin: 5px;
 }
 
-.dialog_content {
-    height: 600px;
-    overflow-x: hidden;
+.content {
+    padding-right: 0;
 }
 
-    .dialog_content .messages {
-    }
-
-    .dialog_content .title {
-        font-family: 'Exo-Light', sans-serif;
-        font-weight: 500;
-        font-size: 23px;
-        color: #7f7f7f;
-        margin-top: 70px;
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%);
-    }
-
-    .dialog_content .message {
-        margin: 20px 0;
-        padding: 5px;
-        border: 1px solid #e5e5e5;
-        border-left: none;
-        border-right: none;
-        width: 800px;
-    }
-
-    .dialog_content .message_header {
-        height: 50px;
-    }
-
-        .dialog_content .message_header img {
-            width: 50px;
-            height: 50px;
-            border-radius: 100px;
-        }
-
-        .dialog_content .message_header a {
-            display: inline-block;
-            font-family: 'Titillium Web SemiBold', sans-serif;
-            font-weight: 400;
-            text-decoration: none;
-            color: #000;
-            margin-bottom: 12px;
-            margin-left: 10px;
-            overflow: hidden;
-        }
-
-            .dialog_content .message_header a:hover {
-                text-decoration: underline;
-            }
-
-    .dialog_content .message_content {
-        margin-top: 10px;
-    }
-
-        .dialog_content .message_content p {
-            font-family: 'Quicksand Regular',sans-serif;
-        }
-
-.dialog_footer {
-    height: 60px;
-    padding-top: 20px;
-    border-top: 1px solid #e5e5e5;
-}
-
-    .dialog_footer .type_message textarea {
-        max-height: 55.5px;
-        min-height: 55.5px;
-        max-width: 220px;
-        min-width: 220px;
-        font-family: 'Exo-Light',sans-serif;
-        font-size: 20px;
-        padding-left: 5px;
-    }
-
-    .dialog_footer .send_message input {
-        height: 60px;
-        width: 80px;
-        font-family: 'Titillium Web SemiBold',sans-serif;
-        font-size: 18px;
-        background: #446a96;
-        border: none;
-        border-radius: 3px;
-        color: #fff;
+    .content > .user_img a {
+        margin: 0;
         cursor: pointer;
     }
 
-        .dialog_footer .send_message input:hover {
-            background: #4a76a8;
-        }
+    .content p {
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+.enter_message {
+    height: 80px;
+    position: fixed;
+    bottom: 0;
+    width: 775px;
+    margin-top: 100px;
+}
+
+#input_msg {
+    background-color: #07325f;
+    border: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: #fff !important;
+    padding-bottom: 90px;
+}
+
+#input_msg:focus {
+    background-color: #07325f;
+}
+
+input_msg::-moz-placeholder {
+    color: #bfbfbf;
+}
+
+
+@media screen and (max-width: 768px) {
+    .back span {
+        display: none !important;
+    }
+
+    .message > .user_img img {
+        width: 45px;
+        height: 45px;
+    }
+
+    #input_msg {
+        border-radius: 0;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .user_name {
+        font-size: 23px;
+    }
+
+    .message > .user_img img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (min-width: 410px) and (max-width: 500px) {
+    .back {
+        margin-right: 30px;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 576px) {
+    .back {
+        margin-right: 40px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .user_img img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .user_name {
+        font-size: 22px;
+    }
+
+    .back {
+        padding-top: 7.5px;
+    }
+}

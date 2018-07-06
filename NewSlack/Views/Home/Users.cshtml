@@ -7,11 +7,9 @@
 
 <html>
 <head>
-    <script>
-        $('.follow button').click(function () {
-            subscribe($('#userId').val());
-        });
-    </script>
+    @section scripts{
+        <script src="~/Scripts/Home/Users/users.js"></script>
+    }
 </head>
 <body>
     @if (users.Count > 0)

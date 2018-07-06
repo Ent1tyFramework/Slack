@@ -1,46 +1,35 @@
-﻿@{
-    ViewBag.Title = "Slack - News";
-    ViewBag.Page = "News";
+﻿@model Slack.Models.ViewModels.LoginModel
+@{
 }
 <html>
 <head>
-    @section links{
-        <link rel="stylesheet" href="~/Content/Styles/Home/News/news.css" />
-    }
-    @section scripts{
-        <script src="~/Scripts/Hubs/posthub.js"></script>
-        <script src="~/Scripts/Home/Posts/posts_load.js"></script>
-        <script src="~/Scripts/Home/Posts/post_upload.js"></script>
-        <script>
-            $(function () {
-                $('div.posts').empty();
-                only = false;
-                data_loading();
-            });
-        </script>
-    }
+    <link rel="stylesheet" href="~/Content/Styles/Home/Posts/posts.css">
+    <link rel="stylesheet" href="~/Content/Styles/Home/News/news.css">
+
+    <script src="~/Scripts/Hubs/posthub.js"></script>
+    <script src="~/Scripts/Home/Posts/posts_load.js"></script>
+    <script src="~/Scripts/Home/Posts/post_upload.js"></script>
+    <script>
+        $(function () {
+            $('div.posts').empty();
+            only = false;
+            data_loading(true);
+        });
+    </script>
 </head>
-<body>
-    <section id="posts">
-        <div class="container">
-            <div class="add_post">
-                <div class="container1">
-                    <input id="img_upload" name="upload" type="file" accept="image/jpg, image/png" hidden>
-                    <div class="upload clearfix">
-                        <img class="left" src="/Content/Images/blue_upload.png" alt="">
-                        <h4 class="left">Upload photo</h4>
-                    </div>
-                </div>
-                <div class="container2" hidden>
-                    <img src="" alt="">
-                </div>
-                <div class="container3" hidden>Publish</div>
-            </div>
-            <div class="posts">
-                <!--render posts from cache-->
-                @{Html.RenderAction("Posts", "Home", new { skip = 0, take = 10, only = false, fromCache = true });}
-            </div>
+<body class="bg-light">
+    <div class="body_container_header row">
+        <div class="title col-10 col-md-10">
+            <h3 class="text-uppercase d-inline-block">#news</h3>
         </div>
-    </section>
+        <div class="add_post col-1 col-md-2 clearfix">
+            <button class="btn btn-outline-success text-uppercase float-right"><i class="fas fa-plus"></i> <span class="d-none d-sm-inline">post</span></button>
+        </div>
+        <input type="file" id="upload_img" hidden />
+    </div>
+    <div class="posts">
+    </div>
 </body>
 </html>
+
+
